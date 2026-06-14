@@ -1,0 +1,11 @@
+<nav class="site-nav">
+    <a href="{{ url_for('home') }}" class="brand" aria-label="{{ site_title }} home">
+        <span class="brand-mark">A</span>
+        <span>{{ site_title }}</span>
+    </a>
+    <div class="nav-links">
+        <a href="{{ url_for('projects') }}" {% if request.endpoint == "projects" %}aria-current="page"{% endif %}>Projects</a>
+        <a href="{{ url_for('about') }}" {% if request.endpoint == "about" %}aria-current="page"{% endif %}>About</a>
+        <a href="{{ url_for('contact') }}" {% if request.endpoint == "contact" %}aria-current="page"{% endif %}>Contact</a>
+    </div>
+</nav>

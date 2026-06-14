@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}About {{ site_title }}{% endblock %}
+{% block description %}Learn more about Andrew, his approach, and the tools he uses.{% endblock %}
+{% block main_class %}page{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <p class="eyebrow">Behind the work</p>
+    <h1>Curious by default. Practical on purpose.</h1>
+</header>
+
+<section class="about-grid">
+    <div class="content-block prose">
+        <h2>A little about me</h2>
+        <p>I'm Andrew, a developer and hands-on problem solver. I enjoy building software that makes a process clearer, faster, or simply less frustrating.</p>
+        <p>This site is a home for the projects I am proud of, the experiments I learn from, and the occasional idea that gets a little out of hand.</p>
+        <p>Replace this copy with your story: what pulled you into development, what kind of problems energize you, and what you want to build next.</p>
+    </div>
+    <aside class="content-block">
+        <p class="eyebrow">Toolbox</p>
+        <ul class="skill-list">
+            <li><span>Languages</span> Python, JavaScript, HTML, CSS</li>
+            <li><span>Frameworks</span> Flask, add your favorites</li>
+            <li><span>Interests</span> Automation, APIs, useful interfaces</li>
+            <li><span>Learning</span> Whatever the next project requires</li>
+        </ul>
+    </aside>
+</section>
+{% endblock %}

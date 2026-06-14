@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{ site_title }} | Developer & Builder{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> Available for interesting work</p>
+        <h1>I build useful things for the web.</h1>
+        <p class="hero-intro">I'm Andrew, a developer who likes turning complicated problems into practical, thoughtful software.</p>
+        <div class="hero-actions">
+            <a class="button primary" href="{{ url_for('projects') }}">Explore my work <span aria-hidden="true">&rarr;</span></a>
+            <a class="button secondary" href="{{ url_for('contact') }}">Start a conversation</a>
+        </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+        <div class="code-window">
+            <div class="window-bar"><span></span><span></span><span></span></div>
+            <pre><code><span class="code-muted">// currently building</span>
+const developer = {
+  name: <span class="code-accent">"Andrew"</span>,
+  focus: <span class="code-accent">"useful software"</span>,
+  curiosity: Infinity
+};</code></pre>
+        </div>
+    </div>
+</section>
+
+<section class="section-heading">
+    <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Projects worth a closer look</h2>
+    </div>
+    <a class="text-link" href="{{ url_for('projects') }}">View all projects <span aria-hidden="true">&rarr;</span></a>
+</section>
+
+<section class="project-grid" aria-label="Featured projects">
+    {% for project in projects %}
+        {% include "_project_card.html" %}
+    {% endfor %}
+</section>
+{% endblock %}

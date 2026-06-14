@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Contact {{ site_title }}{% endblock %}
+{% block description %}Get in touch with Andrew about a project, idea, or opportunity.{% endblock %}
+{% block main_class %}page{% endblock %}
+
+{% block content %}
+<section class="contact-panel">
+    <p class="eyebrow">Let's talk</p>
+    <h1>Have a project, opportunity, or interesting problem?</h1>
+    <p>I'd enjoy hearing about it. Email is the best way to reach me, and you can also find more of my work and background below.</p>
+    <a class="button primary" href="mailto:{{ site_email }}">Email {{ site_email }} <span aria-hidden="true">&rarr;</span></a>
+    <div class="contact-links">
+        <a href="{{ github_url }}"><span>GitHub</span><span aria-hidden="true">&nearr;</span></a>
+        <a href="{{ linkedin_url }}"><span>LinkedIn</span><span aria-hidden="true">&nearr;</span></a>
+    </div>
+</section>
+{% endblock %}

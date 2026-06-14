@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_title }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ site_description }}{% endblock %}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ self.title() | striptags }}">
+    <meta property="og:description" content="{{ self.description() | striptags }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta name="theme-color" content="#0b0d10">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {% include "_header.html" %}
+    <main id="main-content" class="{% block main_class %}{% endblock %}">
+        {% block content %}{% endblock %}
+    </main>
+    {% include "_footer.html" %}
+</body>
+</html>
