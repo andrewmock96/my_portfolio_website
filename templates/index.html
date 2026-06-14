@@ -36,6 +36,7 @@ const developer = {
 
 <section class="project-grid" aria-label="Featured projects">
     {% for project in projects %}
+        {% set project_number = loop.index %}
         {% include "_project_card.html" %}
     {% endfor %}
 </section>

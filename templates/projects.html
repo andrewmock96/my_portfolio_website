@@ -13,6 +13,7 @@
 
 <section class="project-grid" aria-label="All projects">
     {% for project in projects %}
+        {% set project_number = loop.index %}
         {% include "_project_card.html" %}
     {% endfor %}
 </section>
