@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Project</title>
+  <link rel="stylesheet" href="chess.css">
+</head>
+<body>
+  <div class="chess-shell">
+    <section class="board-panel" aria-label="Playable chess board">
+      <div class="board-header">
+        <div>
+          <span class="label">Position</span>
+          <strong id="statusText">White to move</strong>
+        </div>
+      </div>
+
+      <div class="board-wrap">
+        <div class="board-stage">
+          <div class="control-rail">
+            <div class="header-actions">
+              <button id="flipButton" class="icon-button" type="button" aria-label="Flip board">Flip</button>
+              <button id="undoButton" class="icon-button" type="button" aria-label="Undo move">Undo</button>
+              <button id="resetButton" class="icon-button primary" type="button" aria-label="Reset game">Reset</button>
+            </div>
+          </div>
+
+          <section class="capture-rail top" aria-label="Black captured pieces">
+            <div class="capture-heading">
+              <span class="label">Black captured</span>
+              <strong id="blackCaptureCount">0</strong>
+            </div>
+            <div id="capturedBlack" class="capture-pieces" aria-live="polite"></div>
+          </section>
+
+          <div class="board-frame">
+            <div class="board" id="board" role="grid" aria-label="Chess board"></div>
+          </div>
+
+          <section class="capture-rail bottom" aria-label="White captured pieces">
+            <div class="capture-heading">
+              <span class="label">White captured</span>
+              <strong id="whiteCaptureCount">0</strong>
+            </div>
+            <div id="capturedWhite" class="capture-pieces" aria-live="polite"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side-panel" aria-label="Game details">
+      <section class="panel-block">
+        <div class="panel-heading">
+          <span class="label">Move list</span>
+          <strong id="moveCount">0 ply</strong>
+        </div>
+        <ol id="moveList" class="move-list" aria-live="polite"></ol>
+      </section>
+
+      <section class="panel-block">
+        <div class="panel-heading">
+          <span class="label">Snapshot</span>
+          <strong>Board state</strong>
+        </div>
+        <div class="snapshot-grid">
+          <div class="snapshot-row"><span>Turn</span><strong id="turnText">White</strong></div>
+          <div class="snapshot-row"><span>Check</span><strong id="checkText">No</strong></div>
+          <div class="snapshot-row"><span>Game</span><strong id="gameStateText">In progress</strong></div>
+          <div class="snapshot-row"><span>Material</span><strong id="materialText">Even</strong></div>
+          <div class="snapshot-row"><span>Last move</span><strong id="lastMoveText">--</strong></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <script type="module" src="chess-app.js"></script>
+</body>
+</html>

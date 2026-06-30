@@ -22,28 +22,37 @@ app.config["SESSION_COOKIE_SECURE"] = IS_PRODUCTION
 
 PROJECTS = [
     {
-        "title": "Project Alpha",
-        "description": "A short, outcome-focused description of what you built and why it matters.",
-        "tags": ["Python", "Flask", "PostgreSQL"],
-        "status": "Featured project",
-        "url": "#",
-        "source_url": "#",
+        "slug": "apollo",
+        "title": "Apollo 11 Lander",
+        "description": "A C++ lunar landing simulator with thrust, gravity, collision checks, and a playable OpenGL window.",
+        "tags": ["C++", "OpenGL", "freeglut", "Physics"],
+        "status": "Playable build",
+        "play_endpoint": "apollo11_game",
+        "preview_image": "wasm/apollo11/menu-background.png",
+        "download_filename": "downloads/apollo11-lander-windows.zip",
+        "source_url": None,
     },
     {
-        "title": "Project Beta",
-        "description": "Use this space to explain the problem, your approach, and the result in one sentence.",
-        "tags": ["JavaScript", "API", "Automation"],
-        "status": "Recent build",
-        "url": "#",
-        "source_url": "#",
+        "slug": "artillery",
+        "title": "Artillery Simulator",
+        "description": "A trajectory simulator that models projectile motion, aiming, and terrain interaction in C++.",
+        "tags": ["C++", "OpenGL", "Simulation", "Unit tests"],
+        "status": "Playable build",
+        "play_endpoint": "artillery_game",
+        "preview_image": "images/artillery-menu-day-desert.png",
+        "download_filename": "downloads/artillery-simulator-windows.zip",
+        "source_url": None,
     },
     {
-        "title": "Project Gamma",
-        "description": "A flexible placeholder for an experiment, open-source contribution, or case study.",
-        "tags": ["Data", "Design", "Research"],
-        "status": "In progress",
-        "url": "#",
-        "source_url": "#",
+        "slug": "chess",
+        "title": "Chess Project",
+        "description": "A desktop chess game built around board state, legal moves, special rules, and an OpenGL interface.",
+        "tags": ["C++", "OpenGL", "OOP", "Game logic"],
+        "status": "Playable build",
+        "play_endpoint": "chess_game",
+        "preview_image": "images/chess-menu-preview.png",
+        "download_filename": "downloads/chess-project-windows.zip",
+        "source_url": None,
     },
 ]
 
@@ -78,6 +87,21 @@ def projects():
     return render_template("projects.html", projects=PROJECTS)
 
 
+@app.route("/games/apollo11")
+def apollo11_game():
+    return render_template("game_apollo11.html")
+
+
+@app.route("/games/artillery")
+def artillery_game():
+    return render_template("game_artillery.html")
+
+
+@app.route("/games/chess")
+def chess_game():
+    return render_template("game_chess.html")
+
+
 @app.route("/about")
 def about():
     return render_template("about.html")
@@ -95,7 +119,7 @@ def sitemap():
     ElementTree.register_namespace("", namespace)
     urlset = ElementTree.Element(f"{{{namespace}}}urlset")
 
-    for endpoint in ("home", "projects", "about", "contact"):
+    for endpoint in ("home", "projects", "apollo11_game", "artillery_game", "chess_game", "about", "contact"):
         url_element = ElementTree.SubElement(urlset, f"{{{namespace}}}url")
         location = ElementTree.SubElement(url_element, f"{{{namespace}}}loc")
         location.text = f"{site_url()}{url_for(endpoint)}"
@@ -117,7 +141,7 @@ def not_found(_error):
 @app.after_request
 def add_security_headers(response):
     response.headers.setdefault("X-Content-Type-Options", "nosniff")
-    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("X-Frame-Options", "SAMEORIGIN")
     response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
     response.headers.setdefault(
         "Permissions-Policy", "camera=(), geolocation=(), microphone=()"

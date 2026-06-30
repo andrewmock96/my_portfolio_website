@@ -1,0 +1,229 @@
+:root {
+  color-scheme: dark;
+  --bg: #040506;
+  --panel: rgba(10, 14, 19, 0.8);
+  --panel-border: rgba(133, 146, 161, 0.28);
+  --text: #f5f7fa;
+  --muted: #9ba7b6;
+  --accent: #d3ff48;
+  --accent-strong: #f0ff9a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #000;
+  color: var(--text);
+  font-family: Inter, "Segoe UI", sans-serif;
+}
+
+button,
+kbd {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.game-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top, rgba(26, 34, 46, 0.55), transparent 40%), var(--bg);
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hud {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: grid;
+  gap: 0.7rem;
+  pointer-events: none;
+}
+
+.hud-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.hud-panel {
+  min-width: 7.75rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 0.45rem;
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+}
+
+.hud-panel .label {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hud-panel strong {
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.compact .hud-panel {
+  min-width: 6.8rem;
+}
+
+kbd {
+  display: inline-flex;
+  min-width: 1.65rem;
+  height: 1.65rem;
+  margin-right: 0.22rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.32rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom-color: rgba(255, 255, 255, 0.24);
+  border-radius: 0.3rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.menu-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background:
+    linear-gradient(rgba(2, 3, 5, 0.32), rgba(2, 3, 5, 0.78)),
+    url("../../images/artillery-menu-day-desert.png") center center / cover no-repeat;
+}
+
+.menu-overlay.hidden {
+  display: none;
+}
+
+.menu-panel {
+  width: min(100%, 34rem);
+  padding: 2rem;
+  border: 1px solid rgba(211, 255, 72, 0.2);
+  border-radius: 0.55rem;
+  background: rgba(7, 10, 14, 0.78);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
+}
+
+.eyebrow {
+  margin: 0 0 0.7rem;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.menu-panel h1 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(2.3rem, 6vw, 4rem);
+  line-height: 1.02;
+}
+
+.menu-copy {
+  max-width: 28rem;
+  margin: 0 0 1.6rem;
+  color: #d4dce7;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.menu-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.menu-button {
+  min-width: 11rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 0.4rem;
+  font-weight: 700;
+}
+
+.menu-button.primary {
+  background: var(--accent);
+  color: #111500;
+}
+
+.menu-button.primary:hover {
+  background: var(--accent-strong);
+}
+
+.menu-button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--text);
+}
+
+.menu-button.secondary:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+}
+
+@media (max-width: 800px) {
+  .hud {
+    top: 0.8rem;
+    left: 0.8rem;
+    right: 0.8rem;
+  }
+
+  .hud-panel {
+    min-width: 6.2rem;
+    padding: 0.58rem 0.65rem;
+  }
+
+  .menu-panel {
+    padding: 1.4rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .hud-row {
+    gap: 0.45rem;
+  }
+
+  .hud-panel {
+    min-width: calc(50% - 0.3rem);
+  }
+
+  .hud-panel strong {
+    font-size: 0.88rem;
+  }
+
+  kbd {
+    min-width: 1.4rem;
+    height: 1.4rem;
+    font-size: 0.72rem;
+  }
+
+  .menu-button {
+    width: 100%;
+  }
+}

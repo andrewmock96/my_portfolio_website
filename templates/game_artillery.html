@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Artillery Simulator | {{ site_title }}{% endblock %}
+{% block description %}Play Andrew's Artillery Simulator in the browser with terrain, ballistic flight, and target practice inspired by the original C++ project.{% endblock %}
+{% block main_class %}game-page{% endblock %}
+
+{% block content %}
+<header class="game-header">
+    <div>
+        <p class="eyebrow">Playable browser port</p>
+        <h1>Artillery Simulator</h1>
+        <p>A browser rebuild of the original C++ artillery project, keeping the randomized terrain, drag-based shell flight, and opposite-side target challenge.</p>
+    </div>
+    <a class="button secondary" href="{{ url_for('projects') }}">Back to projects</a>
+</header>
+
+<section class="game-frame-shell" aria-label="Artillery Simulator playable game">
+    <iframe
+        class="game-frame"
+        src="{{ url_for('static', filename='games/artillery/index.html') }}"
+        title="Artillery Simulator game"
+        allow="fullscreen"
+        loading="eager"></iframe>
+</section>
+
+<section class="game-controls-panel" aria-label="Artillery Simulator controls">
+    <span><kbd>A</kbd><kbd>D</kbd> or <kbd>&larr;</kbd><kbd>&rarr;</kbd> rotate</span>
+    <span><kbd>W</kbd><kbd>S</kbd> or <kbd>&uarr;</kbd><kbd>&darr;</kbd> raise / lower</span>
+    <span><kbd>Space</kbd> fire</span>
+    <span><kbd>R</kbd> new terrain</span>
+    <span><kbd>Enter</kbd> start</span>
+</section>
+{% endblock %}

@@ -1,4 +1,13 @@
 <article class="project-card">
+    <div class="project-preview project-preview-{{ project.slug }}{% if project.preview_image %} has-image{% endif %}" aria-hidden="true">
+        {% if project.preview_image %}
+            <img src="{{ url_for('static', filename=project.preview_image) }}" alt="">
+        {% else %}
+            <span></span>
+            <span></span>
+            <span></span>
+        {% endif %}
+    </div>
     <div class="project-topline">
         <span>{{ "%02d" | format(project_number) }}</span>
         <span>{{ project.status }}</span>
@@ -13,7 +22,12 @@
         {% endfor %}
     </ul>
     <div class="project-links">
-        <a href="{{ project.url }}">View project <span aria-hidden="true">&nearr;</span></a>
-        <a href="{{ project.source_url }}">Source <span aria-hidden="true">&nearr;</span></a>
+        {% if project.play_endpoint %}
+            <a href="{{ url_for(project.play_endpoint) }}">Play in browser <span aria-hidden="true">&rarr;</span></a>
+        {% endif %}
+        <a href="{{ url_for('static', filename=project.download_filename) }}" download>Download Windows build <span aria-hidden="true">&darr;</span></a>
+        {% if project.source_url %}
+            <a href="{{ project.source_url }}">Source <span aria-hidden="true">&nearr;</span></a>
+        {% endif %}
     </div>
 </article>

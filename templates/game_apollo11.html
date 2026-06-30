@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Apollo 11 Lander | {{ site_title }}{% endblock %}
+{% block description %}Play Andrew's Apollo 11 Lander C++ game compiled to WebAssembly.{% endblock %}
+{% block main_class %}game-page{% endblock %}
+
+{% block content %}
+<header class="game-header">
+    <div>
+        <p class="eyebrow">Playable WebAssembly port</p>
+        <h1>Apollo 11 Lander</h1>
+        <p>Compiled from the original C++ OpenGL/freeglut project. Use the arrow keys or A/S/D for thrust and rotation; press Space to restart after landing or crashing.</p>
+    </div>
+    <a class="button secondary" href="{{ url_for('projects') }}">Back to projects</a>
+</header>
+
+<section class="game-frame-shell" aria-label="Apollo 11 Lander playable game">
+    <iframe
+        class="game-frame"
+        src="{{ url_for('static', filename='wasm/apollo11/apollo11.html') }}"
+        title="Apollo 11 Lander game"
+        allow="fullscreen"
+        loading="eager"></iframe>
+</section>
+{% endblock %}

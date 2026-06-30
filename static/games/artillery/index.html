@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artillery Simulator</title>
+  <link rel="stylesheet" href="artillery.css">
+</head>
+<body>
+  <div class="game-shell">
+    <canvas id="gameCanvas" aria-label="Artillery Simulator canvas"></canvas>
+
+    <div class="hud" aria-live="polite">
+      <div class="hud-row">
+        <div class="hud-panel">
+          <span class="label">Status</span>
+          <strong id="statusValue">Ready</strong>
+        </div>
+        <div class="hud-panel">
+          <span class="label">Angle</span>
+          <strong id="angleValue">45.0 deg</strong>
+        </div>
+        <div class="hud-panel">
+          <span class="label">Shots</span>
+          <strong id="shotsValue">0</strong>
+        </div>
+        <div class="hud-panel">
+          <span class="label">Best Miss</span>
+          <strong id="bestMissValue">--</strong>
+        </div>
+      </div>
+
+      <div class="hud-row compact">
+        <div class="hud-panel">
+          <span class="label">Flight</span>
+          <strong id="flightValue">0.0 s</strong>
+        </div>
+        <div class="hud-panel">
+          <span class="label">Distance</span>
+          <strong id="distanceValue">0 m</strong>
+        </div>
+        <div class="hud-panel">
+          <span class="label">Max Height</span>
+          <strong id="heightValue">0 m</strong>
+        </div>
+        <div class="hud-panel">
+          <span class="label">Target</span>
+          <strong id="targetValue">Acquire</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel">
+        <p class="eyebrow">Playable browser port</p>
+        <h1>Artillery Simulator</h1>
+        <p class="menu-copy">Dial in your angle, launch the shell, and walk shots onto the target across a procedurally generated battlefield.</p>
+        <div class="menu-actions">
+          <button id="startButton" class="menu-button primary" type="button">Start simulation</button>
+          <button id="resetButton" class="menu-button secondary" type="button">New terrain</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="artillery.js"></script>
+</body>
+</html>

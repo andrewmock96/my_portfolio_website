@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apollo 11 Lander</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #040404;
+      --panel: rgba(7, 8, 10, 0.72);
+      --panel-strong: rgba(8, 10, 12, 0.9);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f5f1df;
+      --muted: #c8bc92;
+      --accent: #5dc8ff;
+      --accent-strong: #8ae2ff;
+      --warning: #ffd36c;
+    }
+    * { box-sizing: border-box; }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--bg);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    body {
+      position: relative;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      image-rendering: auto;
+      outline: none;
+    }
+    .hud {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      z-index: 2;
+      display: none;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      pointer-events: none;
+    }
+    .hud.visible {
+      display: grid;
+    }
+    .hud-card {
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.24);
+    }
+    .hud-label {
+      margin: 0 0 6px;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    .hud-value {
+      margin: 0;
+      color: var(--text);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: stretch;
+      justify-content: flex-start;
+      padding: clamp(24px, 5vw, 40px);
+      background:
+        linear-gradient(90deg, rgba(2, 3, 5, 0.92) 0%, rgba(2, 3, 5, 0.72) 40%, rgba(2, 3, 5, 0.35) 65%, rgba(2, 3, 5, 0.18) 100%),
+        url("./menu-background.png") center center / cover no-repeat;
+    }
+    .overlay.hidden {
+      display: none;
+    }
+    .menu-panel,
+    .result-panel {
+      width: min(420px, 100%);
+      padding: clamp(24px, 4vw, 34px);
+      align-self: center;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 20px;
+      background: var(--panel-strong);
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(8px);
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent-strong);
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    h1,
+    h2 {
+      margin: 0 0 14px;
+      color: var(--text);
+      line-height: 0.95;
+    }
+    h1 {
+      font-size: clamp(44px, 8vw, 72px);
+    }
+    h2 {
+      font-size: clamp(32px, 6vw, 48px);
+    }
+    .lead,
+    .summary {
+      margin: 0 0 22px;
+      color: rgba(245, 241, 223, 0.82);
+      font-size: 17px;
+      line-height: 1.55;
+    }
+    .menu-meta,
+    .result-stats {
+      display: grid;
+      gap: 10px;
+      margin: 0 0 24px;
+      padding: 0;
+      list-style: none;
+    }
+    .menu-meta li,
+    .result-stats li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(245, 241, 223, 0.88);
+      font-size: 15px;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    button {
+      cursor: pointer;
+      padding: 13px 18px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+    }
+    button:hover {
+      transform: translateY(-1px);
+    }
+    .primary {
+      color: #041017;
+      background: linear-gradient(135deg, #8ae2ff, #5dc8ff);
+    }
+    .secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .score {
+      color: var(--warning);
+      font-size: clamp(42px, 8vw, 64px);
+      font-weight: 700;
+      line-height: 1;
+    }
+    .status {
+      color: var(--accent-strong);
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .status.crash {
+      color: #ff9c7e;
+    }
+    @media (max-width: 720px) {
+      .hud {
+        grid-template-columns: 1fr;
+      }
+      .overlay {
+        padding: 18px;
+        align-items: flex-end;
+      }
+      .menu-panel,
+      .result-panel {
+        border-radius: 16px;
+      }
+      .lead,
+      .summary {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
+
+  <section class="hud" id="hud" aria-live="polite">
+    <article class="hud-card">
+      <p class="hud-label">Fuel</p>
+      <p class="hud-value" id="fuelValue">5000</p>
+    </article>
+    <article class="hud-card">
+      <p class="hud-label">Elapsed Time</p>
+      <p class="hud-value" id="timeValue">0.0s</p>
+    </article>
+    <article class="hud-card">
+      <p class="hud-label">Projected Score</p>
+      <p class="hud-value" id="scoreValue">0</p>
+    </article>
+  </section>
+
+  <section class="overlay" id="menuOverlay">
+    <div class="menu-panel">
+      <p class="eyebrow">Apollo 11 Mission Console</p>
+      <h1>Lunar Lander</h1>
+      <p class="lead">Set the descent down on the blue landing pad. Faster touchdowns score better, and every bit of fuel you save turns into bonus points.</p>
+      <ul class="menu-meta">
+        <li><span>Main thruster</span><strong>Down Arrow / S</strong></li>
+        <li><span>Rotate left / right</span><strong>Left / Right or A / D</strong></li>
+        <li><span>Reset after a run</span><strong>Space</strong></li>
+      </ul>
+      <div class="actions">
+        <button class="primary" id="startButton" type="button">Begin descent</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="overlay hidden" id="resultOverlay">
+    <div class="result-panel">
+      <p class="status" id="resultStatus">Mission complete</p>
+      <h2 id="resultTitle">Touchdown confirmed</h2>
+      <p class="summary" id="resultSummary">Fast landings are worth more, and remaining fuel is added as a bonus.</p>
+      <p class="score" id="resultScore">0</p>
+      <ul class="result-stats">
+        <li><span>Time</span><strong id="resultTime">0.0s</strong></li>
+        <li><span>Fuel left</span><strong id="resultFuel">0</strong></li>
+        <li><span>Final score</span><strong id="resultScoreLabel">0</strong></li>
+      </ul>
+      <div class="actions">
+        <button class="primary" id="retryButton" type="button">Fly again</button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const hud = document.getElementById("hud");
+    const menuOverlay = document.getElementById("menuOverlay");
+    const resultOverlay = document.getElementById("resultOverlay");
+    const fuelValue = document.getElementById("fuelValue");
+    const timeValue = document.getElementById("timeValue");
+    const scoreValue = document.getElementById("scoreValue");
+    const resultStatus = document.getElementById("resultStatus");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultSummary = document.getElementById("resultSummary");
+    const resultScore = document.getElementById("resultScore");
+    const resultTime = document.getElementById("resultTime");
+    const resultFuel = document.getElementById("resultFuel");
+    const resultScoreLabel = document.getElementById("resultScoreLabel");
+
+    function formatSeconds(value) {
+      return `${value.toFixed(1)}s`;
+    }
+
+    function syncCanvasSize() {
+      const ratio = window.devicePixelRatio || 1;
+      const width = Math.max(1, Math.round(canvas.clientWidth * ratio));
+      const height = Math.max(1, Math.round(canvas.clientHeight * ratio));
+      if (canvas.width !== width || canvas.height !== height) {
+        canvas.width = width;
+        canvas.height = height;
+      }
+    }
+
+    function setRunningUi(active) {
+      hud.classList.toggle("visible", active);
+      if (active) {
+        resultOverlay.classList.add("hidden");
+        menuOverlay.classList.add("hidden");
+      }
+    }
+
+    function updateHud() {
+      if (!Module._apolloIsStarted) {
+        return;
+      }
+
+      const started = !!Module._apolloIsStarted();
+      const finished = !!Module._apolloHasFinished();
+      const fuel = Module._apolloFuelRemaining();
+      const elapsed = Module._apolloElapsedSeconds();
+      const score = Module._apolloScore();
+
+      fuelValue.textContent = String(fuel);
+      timeValue.textContent = formatSeconds(elapsed);
+      scoreValue.textContent = String(score);
+
+      if (!started) {
+        hud.classList.remove("visible");
+        return;
+      }
+
+      hud.classList.add("visible");
+
+      if (finished && resultOverlay.classList.contains("hidden")) {
+        const landed = !!Module._apolloLandedSafely();
+        resultStatus.textContent = landed ? "Mission complete" : "Mission failed";
+        resultStatus.classList.toggle("crash", !landed);
+        resultTitle.textContent = landed ? "Touchdown confirmed" : "Lander lost";
+        resultSummary.textContent = landed
+          ? "You scored for speed and fuel efficiency. Shorter descents are worth more."
+          : "The timer stopped with the crash. Try again for a cleaner, faster touchdown.";
+        resultScore.textContent = String(score);
+        resultTime.textContent = formatSeconds(elapsed);
+        resultFuel.textContent = String(fuel);
+        resultScoreLabel.textContent = String(score);
+        resultOverlay.classList.remove("hidden");
+      }
+    }
+
+    var Module = {
+      canvas,
+      syncCanvasSize,
+      print: console.log,
+      printErr: console.error,
+      onRuntimeInitialized() {
+        document.getElementById("startButton").addEventListener("click", () => {
+          Module._apolloStartGame();
+          setRunningUi(true);
+          canvas.focus();
+        });
+
+        document.getElementById("retryButton").addEventListener("click", () => {
+          Module._apolloRestartGame();
+          setRunningUi(true);
+          canvas.focus();
+        });
+
+        setInterval(updateHud, 100);
+        syncCanvasSize();
+        window.addEventListener("resize", syncCanvasSize);
+        canvas.focus();
+      }
+    };
+  </script>
+  <script src="apollo11.js"></script>
+</body>
+</html>

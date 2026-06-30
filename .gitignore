@@ -19,3 +19,6 @@ desktop.ini
 
 # Ignore generated image-converter output when using a dedicated output folder
 static/images/converted/
+
+# Ignore temporary packaging output
+build/

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Chess Project | {{ site_title }}{% endblock %}
+{% block description %}Play Andrew's browser chess build with full legal move handling, board history, and a focused game surface.{% endblock %}
+{% block main_class %}game-page{% endblock %}
+
+{% block content %}
+<header class="game-header">
+    <div>
+        <p class="eyebrow">Playable browser build</p>
+        <h1>Chess Project</h1>
+        <p>A browser chess experience paired with the original C++ portfolio project, giving visitors a clean way to explore move logic, legal play, and board interaction right in the site.</p>
+    </div>
+    <a class="button secondary" href="{{ url_for('projects') }}">Back to projects</a>
+</header>
+
+<section class="game-frame-shell game-frame-shell-chess" aria-label="Chess playable game">
+    <iframe
+        class="game-frame"
+        src="{{ url_for('static', filename='games/chess/index.html') }}"
+        title="Chess game"
+        allow="fullscreen"
+        loading="eager"></iframe>
+</section>
+
+<section class="game-controls-panel" aria-label="Chess controls">
+    <span>Click a piece, then click a highlighted square to move</span>
+    <span><kbd>Undo</kbd> back up one ply</span>
+    <span><kbd>Reset</kbd> start a fresh game</span>
+</section>
+{% endblock %}
