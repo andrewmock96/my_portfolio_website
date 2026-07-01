@@ -9,6 +9,8 @@ A standalone Flask portfolio for showcasing personal projects, experiments, and 
 3. Copy `.env.example` to `.env` and replace the placeholder values.
 4. Run the site with `python app.py`.
 
+If you need to run the local image conversion helper, install the development-only image dependencies with `pip install -r requirements-dev.txt`.
+
 ## Customize
 
 - Update the `PROJECTS` list in `app.py` with real projects and links.
@@ -54,6 +56,8 @@ The service uses:
 
 - Build command: `pip install -r requirements.txt`
 - Start command: `gunicorn app:app --bind 0.0.0.0:$PORT`
+
+Render uses the Python version pinned in [.python-version](.python-version).
 
 ### 3. Set the environment values
 
