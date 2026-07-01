@@ -53,7 +53,7 @@ Render deploys from GitHub, so make sure this project is in a GitHub repository 
 The service uses:
 
 - Build command: `pip install -r requirements.txt`
-- Start command: `gunicorn app:app`
+- Start command: `gunicorn app:app --bind 0.0.0.0:$PORT`
 
 ### 3. Set the environment values
 
