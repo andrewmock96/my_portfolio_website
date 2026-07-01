@@ -11,11 +11,14 @@ class PortfolioSiteTests(unittest.TestCase):
     def test_home_page_renders(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertIn("I build playable software.", response.get_data(as_text=True))
+        self.assertIn("Projects worth a closer look", response.get_data(as_text=True))
         self.assertIn("Apollo 11 Lander", response.get_data(as_text=True))
+        self.assertIn("Going Indie", response.get_data(as_text=True))
+        self.assertIn("360Epoxy", response.get_data(as_text=True))
+        self.assertIn("360Epoxy", response.get_data(as_text=True))
 
     def test_public_pages_render(self):
-        for path in ("/projects", "/games/apollo11", "/games/artillery", "/games/chess", "/about", "/contact", "/robots.txt", "/sitemap.xml"):
+        for path in ("/projects", "/games/apollo11", "/games/artillery", "/games/chess", "/about", "/contact", "/robots.txt", "/sitemap.xml", "/design/job-history-options"):
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 200)
 
@@ -23,8 +26,8 @@ class PortfolioSiteTests(unittest.TestCase):
         body = self.client.get("/projects").get_data(as_text=True)
         self.assertIn("Apollo 11 Lander", body)
         self.assertIn("Artillery Simulator", body)
-        self.assertIn("Chess Project", body)
-        self.assertIn("Play in browser", body)
+        self.assertIn("Chess", body)
+        self.assertIn("Play", body)
         self.assertIn("Download Windows build", body)
 
     def test_unknown_page_uses_404_template(self):

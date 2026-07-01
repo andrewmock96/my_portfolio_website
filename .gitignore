@@ -22,3 +22,6 @@ static/images/converted/
 
 # Ignore temporary packaging output
 build/
+
+# Ignore local browser screenshots
+127.0.0.1_*.png

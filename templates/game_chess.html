@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}Chess Project | {{ site_title }}{% endblock %}
-{% block description %}Play Andrew's browser chess build with full legal move handling, board history, and a focused game surface.{% endblock %}
+{% block title %}Chess | {{ site_title }}{% endblock %}
+{% block description %}A fully featured C++ implementation of the classic game of chess with complete rule handling and an interactive graphical interface.{% endblock %}
 {% block main_class %}game-page{% endblock %}
 
 {% block content %}
 <header class="game-header">
     <div>
         <p class="eyebrow">Playable browser build</p>
-        <h1>Chess Project</h1>
-        <p>A browser chess experience paired with the original C++ portfolio project, giving visitors a clean way to explore move logic, legal play, and board interaction right in the site.</p>
+        <h1>Chess</h1>
+        <p>A fully featured C++ implementation of the classic game of chess, built using object-oriented design principles and modern software engineering practices. The project includes complete game logic, move validation, special rules such as castling, en passant, and pawn promotion, turn management, and a graphical user interface for interactive gameplay. Designed with extensibility and maintainability in mind, the application demonstrates proficiency in data structures, algorithms, inheritance, polymorphism, event-driven programming, and the development of complex, rule-based systems.</p>
     </div>
     <a class="button secondary" href="{{ url_for('projects') }}">Back to projects</a>
 </header>

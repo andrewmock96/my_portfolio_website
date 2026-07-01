@@ -1,30 +1,116 @@
 {% extends "base.html" %}
 
 {% block title %}About {{ site_title }}{% endblock %}
-{% block description %}Learn more about Andrew, his approach, and the tools he uses.{% endblock %}
-{% block main_class %}page{% endblock %}
+{% block description %}Learn more about Andrew Mock, his engineering background, and the perspective he brings to software development.{% endblock %}
+{% block main_class %}page about-page{% endblock %}
 
 {% block content %}
-<header class="page-header">
-    <p class="eyebrow">Behind the work</p>
-    <h1>Curious by default. Practical on purpose.</h1>
-</header>
-
-<section class="about-grid">
-    <div class="content-block prose">
-        <h2>A little about me</h2>
-        <p>I'm Andrew, a developer and hands-on problem solver. I enjoy building software that makes a process clearer, faster, or simply less frustrating.</p>
-        <p>This site is a home for the projects I am proud of, the experiments I learn from, and the occasional idea that gets a little out of hand.</p>
-        <p>Replace this copy with your story: what pulled you into development, what kind of problems energize you, and what you want to build next.</p>
+<section class="about-hero">
+    <div class="about-hero-media">
+        <img src="{{ url_for('static', filename='images/about/professional-closeup.jpg') }}" alt="Andrew Mock in a light suit and tie outdoors">
     </div>
-    <aside class="content-block">
-        <p class="eyebrow">Toolbox</p>
-        <ul class="skill-list">
-            <li><span>Languages</span> Python, JavaScript, HTML, CSS</li>
-            <li><span>Frameworks</span> Flask, add your favorites</li>
-            <li><span>Interests</span> Automation, APIs, useful interfaces</li>
-            <li><span>Learning</span> Whatever the next project requires</li>
-        </ul>
-    </aside>
+    <div class="about-hero-copy">
+        <p class="eyebrow">About me</p>
+        <h1>Building solutions that make an impact.</h1>
+        <p>I'm a Software Engineering student and problem solver with a passion for creating reliable, user-focused software. I enjoy building applications that bridge technical depth with practical value, whether that's full-stack web development, simulation work, or tools that help people make better decisions.</p>
+        <p>Before moving into software, I worked in aircraft manufacturing at Textron Aviation, where precision, teamwork, and quality mattered every day. That experience still shapes how I approach engineering now: build with purpose, pay attention to details, and make things dependable.</p>
+    </div>
+</section>
+
+<section class="about-section-intro">
+    <p class="eyebrow">What sets me apart</p>
+    <h2>A well-rounded approach to every project.</h2>
+</section>
+
+<section class="about-pillars" aria-label="What sets Andrew apart">
+    <article class="about-pillar">
+        <h3>Software Engineering</h3>
+        <p>Strong interest in computer science, modern web development, and building applications that are maintainable, reliable, and useful.</p>
+    </article>
+    <article class="about-pillar">
+        <h3>Mechanically Minded</h3>
+        <p>I enjoy understanding how things work, whether that's code, manufacturing processes, engines, or larger technical systems.</p>
+    </article>
+    <article class="about-pillar">
+        <h3>Outdoors &amp; Adventure</h3>
+        <p>Hunting, travel, and outdoor time keep me curious, grounded, and energized outside of technical work.</p>
+    </article>
+    <article class="about-pillar">
+        <h3>Eagle Scout</h3>
+        <p>Leadership, service, and follow-through have shaped how I approach collaboration, responsibility, and long-term growth.</p>
+    </article>
+</section>
+
+<section class="about-story">
+    <div class="about-story-copy">
+        <p class="eyebrow">More about me</p>
+        <h2>Beyond the keyboard.</h2>
+        <p>I'm a husband, a builder, and a lifelong learner. I enjoy projects that challenge me to grow, whether that's developing a new application, rebuilding something mechanical, or learning a new tool from scratch.</p>
+        <p>I believe the best solutions come from curiosity, hard work, and a willingness to solve real problems for real people. That same mindset is what connects my software work, my hands-on interests, and the way I think about building a meaningful career.</p>
+    </div>
+
+    <div class="about-story-media">
+        <img src="{{ url_for('static', filename='images/about/wedding-couple.png') }}" alt="Andrew and his wife sharing a moment outdoors after their wedding ceremony">
+    </div>
+
+    <div class="about-story-notes">
+        <div class="story-note">
+            <strong>Builder at heart</strong>
+            <p>From software to cars to hands-on projects, I like creating, fixing, and improving things.</p>
+        </div>
+        <div class="story-note">
+            <strong>Always learning</strong>
+            <p>I'm constantly exploring new technologies, better systems, and smarter ways to build.</p>
+        </div>
+        <div class="story-note">
+            <strong>Family comes first</strong>
+            <p>My wife is a huge part of my life, and building a future together keeps me grounded and motivated.</p>
+        </div>
+    </div>
+</section>
+
+<section class="about-section-intro">
+    <p class="eyebrow">Professional journey</p>
+    <h2>How the path has taken shape.</h2>
+</section>
+
+<section class="about-journey" aria-label="Professional journey">
+    <div class="journey-step">
+        <strong>Textron Aviation</strong>
+        <span>Aircraft manufacturing, precision, teamwork, and quality-driven execution.</span>
+    </div>
+    <div class="journey-step">
+        <strong>Software Engineering Student</strong>
+        <span>Building foundations in programming, systems, and practical engineering.</span>
+    </div>
+    <div class="journey-step">
+        <strong>360Epoxy</strong>
+        <span>Contract web development with real client requirements and production delivery.</span>
+    </div>
+    <div class="journey-step">
+        <strong>Going Indie</strong>
+        <span>Internship experience building tools that help game developers make informed business decisions.</span>
+    </div>
+    <div class="journey-step">
+        <strong>Next chapter</strong>
+        <span>Growing into a full-time software engineering role with real ownership and impact.</span>
+    </div>
+</section>
+
+<section class="about-section-intro">
+    <p class="eyebrow">Fun pictures</p>
+    <h2>A few moments from life outside of work.</h2>
+</section>
+
+<section class="about-gallery" aria-label="Fun pictures">
+    <figure class="about-gallery-item wide catalina-shot">
+        <img src="{{ url_for('static', filename='images/about/catalina-island.jpg') }}" alt="Andrew and his wife smiling in front of the water at Catalina Island">
+    </figure>
+    <figure class="about-gallery-item tall">
+        <img src="{{ url_for('static', filename='images/about/jedi-robe.jpg') }}" alt="Andrew wearing a Jedi robe at Disneyland">
+    </figure>
+    <figure class="about-gallery-item engine-shot">
+        <img src="{{ url_for('static', filename='images/about/selfie-over-engine.png') }}" alt="Andrew taking a selfie while working on a car with the engine pulled out">
+    </figure>
 </section>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}Artillery Simulator | {{ site_title }}{% endblock %}
-{% block description %}Play Andrew's Artillery Simulator in the browser with terrain, ballistic flight, and target practice inspired by the original C++ project.{% endblock %}
+{% block description %}A C++ physics simulation that models the firing of an M777 howitzer using realistic projectile motion and environmental physics.{% endblock %}
 {% block main_class %}game-page{% endblock %}
 
 {% block content %}
@@ -9,7 +9,7 @@
     <div>
         <p class="eyebrow">Playable browser port</p>
         <h1>Artillery Simulator</h1>
-        <p>A browser rebuild of the original C++ artillery project, keeping the randomized terrain, drag-based shell flight, and opposite-side target challenge.</p>
+        <p>A C++ physics simulation that models the firing of an M777 howitzer using realistic projectile motion and environmental physics. The application calculates factors such as velocity, acceleration, gravity, launch angle, and terrain interactions to accurately simulate artillery trajectories and impact points. Developed with an object-oriented architecture and OpenGL-based visualization, the project demonstrates strong problem-solving skills in mathematical modeling, simulation development, class design, and real-time user interaction while reinforcing core software engineering principles.</p>
     </div>
     <a class="button secondary" href="{{ url_for('projects') }}">Back to projects</a>
 </header>

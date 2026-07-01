@@ -5,6 +5,19 @@ const RANKS = ["1", "2", "3", "4", "5", "6", "7", "8"];
 const PIECE_VALUES = { p: 1, n: 3, b: 3, r: 5, q: 9, k: 0 };
 const PIECE_ORDER = ["q", "r", "r", "b", "b", "n", "n", "p", "p", "p", "p", "p", "p", "p", "p"];
 const STARTING_COUNTS = { p: 8, n: 2, b: 2, r: 2, q: 1, k: 1 };
+const PROMOTION_OPTIONS = [
+  { type: "q", label: "Queen" },
+  { type: "r", label: "Rook" },
+  { type: "b", label: "Bishop" },
+  { type: "n", label: "Knight" },
+];
+const TIME_CONTROL_OPTIONS = {
+  "0": { label: "Unlimited", ms: null },
+  "1": { label: "1 min", ms: 60_000 },
+  "3": { label: "3 min", ms: 180_000 },
+  "5": { label: "5 min", ms: 300_000 },
+  "10": { label: "10 min", ms: 600_000 },
+};
 const PIECE_RECTS = {
   k: [[2, 12, -2, 12, -2, 5, 2, 5], [-5, 10, 5, 10, 5, 8, -5, 8], [-4, 7, 4, 7, 4, 6, -4, 6], [-7, 5, 7, 5, 6, 2, -6, 2], [-10, 2, 10, 2, 10, -1, -10, -1], [-7, -1, 7, -1, 7, -7, -7, -7], [-9, -7, 9, -7, 8, -9, -8, -9], [-11, -9, 11, -9, 11, -12, -11, -12], [-13, -12, 13, -12, 12, -15, -12, -15]],
   q: [[-7, 8, -5, 8, -5, 5, -7, 5], [-1, 11, 1, 11, 1, 5, -1, 5], [5, 8, 7, 8, 7, 5, 5, 5], [-8, 5, 8, 5, 6, 2, -6, 2], [-6, 2, 6, 2, 5, 0, -5, 0], [-3, 0, 3, 0, 2, -5, -2, -5], [-4, -5, 4, -5, 6, -10, -6, -10], [-8, -10, 8, -10, 8, -12, -8, -12], [-10, -12, 10, -12, 9, -15, -9, -15]],
@@ -23,18 +36,30 @@ const checkText = document.getElementById("checkText");
 const gameStateText = document.getElementById("gameStateText");
 const materialText = document.getElementById("materialText");
 const lastMoveText = document.getElementById("lastMoveText");
-const capturedBlack = document.getElementById("capturedBlack");
-const capturedWhite = document.getElementById("capturedWhite");
-const blackCaptureCount = document.getElementById("blackCaptureCount");
-const whiteCaptureCount = document.getElementById("whiteCaptureCount");
+const whiteClockText = document.getElementById("whiteClockText");
+const blackClockText = document.getElementById("blackClockText");
+const timeControlText = document.getElementById("timeControlText");
+const capturedByWhite = document.getElementById("capturedByWhite");
+const capturedByBlack = document.getElementById("capturedByBlack");
+const whiteMaterialLead = document.getElementById("whiteMaterialLead");
+const blackMaterialLead = document.getElementById("blackMaterialLead");
+const promotionDialog = document.getElementById("promotionDialog");
+const promotionChoices = document.getElementById("promotionChoices");
 const resetButton = document.getElementById("resetButton");
 const undoButton = document.getElementById("undoButton");
 const flipButton = document.getElementById("flipButton");
+const timeButtons = Array.from(document.querySelectorAll("[data-time-control]"));
 
 const game = new Chess();
 let selectedSquare = null;
 let legalTargets = [];
 let flipped = false;
+let selectedTimeControl = "0";
+let remainingMs = { w: null, b: null };
+let pendingPromotionMoves = null;
+let timeoutWinner = null;
+let lastTickAt = Date.now();
+let clockIntervalId = null;
 
 function orderedSquares() {
   const files = flipped ? [...FILES].reverse() : FILES;
@@ -85,12 +110,78 @@ function selectionMoves(square) {
   return game.moves({ square, verbose: true });
 }
 
+function formatClock(ms) {
+  const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${String(seconds).padStart(2, "0")}`;
+}
+
+function currentTimeControl() {
+  return TIME_CONTROL_OPTIONS[selectedTimeControl];
+}
+
+function updateTimeButtons() {
+  timeButtons.forEach((button) => {
+    button.classList.toggle("active", button.dataset.timeControl === selectedTimeControl);
+  });
+}
+
+function closePromotionDialog() {
+  pendingPromotionMoves = null;
+  promotionChoices.innerHTML = "";
+  promotionDialog.hidden = true;
+}
+
+function openPromotionDialog(moves) {
+  pendingPromotionMoves = moves;
+  const color = game.turn();
+  promotionChoices.innerHTML = PROMOTION_OPTIONS.map(
+    ({ type, label }) => `
+      <button class="promotion-button" type="button" data-promotion="${type}">
+        ${pieceSvg({ color, type }, "mini")}
+        <span>${label}</span>
+      </button>
+    `,
+  ).join("");
+
+  promotionChoices.querySelectorAll("[data-promotion]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const move = pendingPromotionMoves.find((candidate) => candidate.promotion === button.dataset.promotion);
+      if (move) {
+        executeMove(move);
+      }
+    });
+  });
+
+  promotionDialog.hidden = false;
+}
+
+function resetClocks() {
+  const { ms } = currentTimeControl();
+  remainingMs = ms === null ? { w: null, b: null } : { w: ms, b: ms };
+  timeoutWinner = null;
+  lastTickAt = Date.now();
+}
+
+function setTimeControl(timeKey) {
+  selectedTimeControl = timeKey;
+  resetClocks();
+  game.reset();
+  clearSelection();
+  closePromotionDialog();
+  render();
+}
+
 function clearSelection() {
   selectedSquare = null;
   legalTargets = [];
 }
 
 function selectSquare(square) {
+  if (timeoutWinner || pendingPromotionMoves) {
+    return;
+  }
   const piece = game.get(square);
   if (!piece || piece.color !== game.turn()) {
     clearSelection();
@@ -100,24 +191,44 @@ function selectSquare(square) {
   legalTargets = selectionMoves(square);
 }
 
-function tryMove(square) {
-  const move = legalTargets.find((candidate) => candidate.to === square);
-  if (!move) {
-    return false;
-  }
-
+function executeMove(move) {
   const result = game.move({
     from: move.from,
     to: move.to,
     promotion: move.promotion || "q",
   });
 
+  if (!result) {
+    return false;
+  }
+
+  if (currentTimeControl().ms !== null) {
+    lastTickAt = Date.now();
+  }
+  closePromotionDialog();
   clearSelection();
   render();
   return Boolean(result);
 }
 
+function tryMove(square) {
+  const candidateMoves = legalTargets.filter((candidate) => candidate.to === square);
+  if (!candidateMoves.length) {
+    return false;
+  }
+
+  if (candidateMoves.length > 1 && candidateMoves.some((candidate) => candidate.promotion)) {
+    openPromotionDialog(candidateMoves);
+    return true;
+  }
+
+  return executeMove(candidateMoves[0]);
+}
+
 function handleSquareClick(square) {
+  if (timeoutWinner || pendingPromotionMoves) {
+    return;
+  }
   if (selectedSquare && tryMove(square)) {
     return;
   }
@@ -156,6 +267,9 @@ function boardMarkup() {
 }
 
 function gameStateLabel() {
+  if (timeoutWinner) {
+    return "Time";
+  }
   if (game.isCheckmate()) {
     return "Checkmate";
   }
@@ -175,6 +289,9 @@ function gameStateLabel() {
 }
 
 function headlineStatus() {
+  if (timeoutWinner) {
+    return `${timeoutWinner === "w" ? "White" : "Black"} wins on time`;
+  }
   if (game.isCheckmate()) {
     return `${game.turn() === "w" ? "Black" : "White"} wins by checkmate`;
   }
@@ -251,21 +368,27 @@ function materialAdvantage(captured) {
 
 function renderCapturedPieces() {
   const captured = getCapturedPieces();
+  const whiteScore = captured.b.reduce((sum, type) => sum + PIECE_VALUES[type], 0);
+  const blackScore = captured.w.reduce((sum, type) => sum + PIECE_VALUES[type], 0);
+  const diff = whiteScore - blackScore;
 
-  capturedBlack.innerHTML = captured.b
+  capturedByWhite.innerHTML = captured.b
     .map((type) => pieceSvg({ color: "b", type }, "mini"))
     .join("");
-  capturedWhite.innerHTML = captured.w
+  capturedByBlack.innerHTML = captured.w
     .map((type) => pieceSvg({ color: "w", type }, "mini"))
     .join("");
 
-  blackCaptureCount.textContent = `${captured.b.length}`;
-  whiteCaptureCount.textContent = `${captured.w.length}`;
+  whiteMaterialLead.textContent = diff > 0 ? `+${diff}` : "";
+  blackMaterialLead.textContent = diff < 0 ? `+${Math.abs(diff)}` : "";
   materialText.textContent = materialAdvantage(captured);
 }
 
 function renderMeta() {
   statusText.textContent = headlineStatus();
+  whiteClockText.textContent = remainingMs.w === null ? "Unlimited" : formatClock(remainingMs.w);
+  blackClockText.textContent = remainingMs.b === null ? "Unlimited" : formatClock(remainingMs.b);
+  timeControlText.textContent = currentTimeControl().label;
   turnText.textContent = game.turn() === "w" ? "White" : "Black";
   checkText.textContent = game.inCheck() ? "Yes" : "No";
   gameStateText.textContent = gameStateLabel();
@@ -281,23 +404,58 @@ function bindBoardEvents() {
   });
 }
 
+function tickClocks() {
+  if (currentTimeControl().ms === null || timeoutWinner || game.isGameOver()) {
+    lastTickAt = Date.now();
+    return;
+  }
+
+  const now = Date.now();
+  const elapsed = now - lastTickAt;
+  lastTickAt = now;
+
+  const activeColor = game.turn();
+  remainingMs[activeColor] = Math.max(0, remainingMs[activeColor] - elapsed);
+
+  if (remainingMs[activeColor] === 0) {
+    timeoutWinner = activeColor === "w" ? "b" : "w";
+    clearSelection();
+    closePromotionDialog();
+  }
+
+  renderMeta();
+}
+
+function startClockLoop() {
+  if (clockIntervalId !== null) {
+    return;
+  }
+  clockIntervalId = window.setInterval(tickClocks, 200);
+}
+
 function render() {
   boardEl.innerHTML = boardMarkup();
   bindBoardEvents();
+  updateTimeButtons();
   renderMoveList();
   renderMeta();
   renderCapturedPieces();
 }
 
 resetButton.addEventListener("click", () => {
+  resetClocks();
   game.reset();
   clearSelection();
+  closePromotionDialog();
   render();
 });
 
 undoButton.addEventListener("click", () => {
   game.undo();
+  timeoutWinner = null;
+  lastTickAt = Date.now();
   clearSelection();
+  closePromotionDialog();
   render();
 });
 
@@ -306,4 +464,13 @@ flipButton.addEventListener("click", () => {
   render();
 });
 
+timeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setTimeControl(button.dataset.timeControl);
+  });
+});
+
+resetClocks();
+startClockLoop();
+closePromotionDialog();
 render();

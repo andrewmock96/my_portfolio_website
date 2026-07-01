@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chess Project</title>
+  <title>Chess</title>
   <link rel="stylesheet" href="chess.css">
 </head>
 <body>
@@ -13,6 +13,15 @@
         <div>
           <span class="label">Position</span>
           <strong id="statusText">White to move</strong>
+        </div>
+        <div class="board-controls">
+          <div class="time-control-group" role="group" aria-label="Time control">
+            <button class="time-button" type="button" data-time-control="1">1 min</button>
+            <button class="time-button" type="button" data-time-control="3">3 min</button>
+            <button class="time-button" type="button" data-time-control="5">5 min</button>
+            <button class="time-button" type="button" data-time-control="10">10 min</button>
+            <button class="time-button" type="button" data-time-control="0">Unlimited</button>
+          </div>
         </div>
       </div>
 
@@ -29,21 +38,27 @@
           <section class="capture-rail top" aria-label="Black captured pieces">
             <div class="capture-heading">
               <span class="label">Black captured</span>
-              <strong id="blackCaptureCount">0</strong>
+              <strong id="blackMaterialLead"></strong>
             </div>
-            <div id="capturedBlack" class="capture-pieces" aria-live="polite"></div>
+            <div id="capturedByBlack" class="capture-pieces" aria-live="polite"></div>
           </section>
 
           <div class="board-frame">
             <div class="board" id="board" role="grid" aria-label="Chess board"></div>
+            <div id="promotionDialog" class="promotion-dialog" hidden>
+              <div class="promotion-card" role="dialog" aria-modal="true" aria-label="Choose promotion piece">
+                <span class="label">Choose promotion</span>
+                <div id="promotionChoices" class="promotion-choices"></div>
+              </div>
+            </div>
           </div>
 
           <section class="capture-rail bottom" aria-label="White captured pieces">
             <div class="capture-heading">
               <span class="label">White captured</span>
-              <strong id="whiteCaptureCount">0</strong>
+              <strong id="whiteMaterialLead"></strong>
             </div>
-            <div id="capturedWhite" class="capture-pieces" aria-live="polite"></div>
+            <div id="capturedByWhite" class="capture-pieces" aria-live="polite"></div>
           </section>
         </div>
       </div>
@@ -64,6 +79,9 @@
           <strong>Board state</strong>
         </div>
         <div class="snapshot-grid">
+          <div class="snapshot-row"><span>White clock</span><strong id="whiteClockText">--:--</strong></div>
+          <div class="snapshot-row"><span>Black clock</span><strong id="blackClockText">--:--</strong></div>
+          <div class="snapshot-row"><span>Time</span><strong id="timeControlText">Unlimited</strong></div>
           <div class="snapshot-row"><span>Turn</span><strong id="turnText">White</strong></div>
           <div class="snapshot-row"><span>Check</span><strong id="checkText">No</strong></div>
           <div class="snapshot-row"><span>Game</span><strong id="gameStateText">In progress</strong></div>

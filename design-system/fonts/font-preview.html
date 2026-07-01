@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lora and Georgia Preview</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Lora:wght@400;500;600;700&display=swap");
+
+    :root {
+      --bg: #f3f4f2;
+      --surface: rgba(255, 255, 255, 0.74);
+      --surface-2: #e7f0f8;
+      --surface-3: #d6e3ee;
+      --border: #b8c9d7;
+      --text: #2c3740;
+      --muted: #55677d;
+      --accent: #8498a7;
+      --mono: "DM Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 2rem;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(183, 205, 222, 0.58), transparent 22rem),
+        linear-gradient(180deg, #fafbfb 0%, var(--bg) 100%);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .page {
+      width: min(1220px, 100%);
+      margin: 0 auto;
+    }
+
+    .intro {
+      margin-bottom: 2rem;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.75rem;
+      color: var(--muted);
+      font: 500 0.78rem/1.2 var(--mono);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .intro h1 {
+      margin: 0 0 0.9rem;
+      font: 600 clamp(2.7rem, 6vw, 4.7rem)/0.95 Lora, serif;
+    }
+
+    .intro p {
+      max-width: 780px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      display: grid;
+      gap: 1rem;
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 0.7rem;
+      background: var(--surface);
+      box-shadow: 0 18px 48px rgba(44, 55, 64, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(44, 55, 64, 0.08);
+    }
+
+    .card-top strong {
+      font-size: 1rem;
+    }
+
+    .pairing {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .mock {
+      display: grid;
+      gap: 1rem;
+      padding: 1.15rem;
+      border: 1px solid rgba(44, 55, 64, 0.08);
+      border-radius: 0.6rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(231,240,248,0.94));
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .brand-mark {
+      width: 1.9rem;
+      height: 1.9rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid rgba(44, 55, 64, 0.12);
+      background: var(--surface-3);
+      font-size: 0.88rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.95rem;
+    }
+
+    .hero h2 {
+      margin: 0 0 0.75rem;
+      font-size: clamp(2.1rem, 5vw, 3.35rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.45rem;
+      padding: 0.72rem 1rem;
+      border: 1px solid rgba(44, 55, 64, 0.12);
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .button.primary {
+      color: #f8fafb;
+      background: #55677d;
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.82);
+    }
+
+    .project {
+      display: grid;
+      gap: 0.8rem;
+      padding: 1rem;
+      border: 1px solid rgba(44, 55, 64, 0.08);
+      border-radius: 0.55rem;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .project-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--muted);
+      font: 0.72rem/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .project h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.5rem;
+      line-height: 1.05;
+    }
+
+    .project p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .tag {
+      padding: 0.28rem 0.48rem;
+      border-radius: 999px;
+      background: rgba(132, 152, 167, 0.12);
+      color: var(--muted);
+      font: 500 0.68rem/1 var(--mono);
+      text-transform: uppercase;
+    }
+
+    .notes {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    .all-lora,
+    .all-lora .mock,
+    .all-lora .card-top,
+    .all-lora .nav,
+    .all-lora .hero,
+    .all-lora .project,
+    .all-lora .notes {
+      font-family: Lora, serif;
+    }
+
+    .all-lora .eyebrow,
+    .all-lora .project-top,
+    .all-lora .tag {
+      font-family: var(--mono);
+    }
+
+    .all-lora .button {
+      font-family: Lora, serif;
+      font-weight: 600;
+    }
+
+    .lora-georgia .hero h2,
+    .lora-georgia .project h3 {
+      font-family: Lora, serif;
+      font-weight: 600;
+    }
+
+    .lora-georgia .mock,
+    .lora-georgia .card-top,
+    .lora-georgia .nav,
+    .lora-georgia .hero p,
+    .lora-georgia .project p,
+    .lora-georgia .button,
+    .lora-georgia .notes {
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 1rem; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="intro">
+      <p class="eyebrow">Lora Usage Preview</p>
+      <h1>One serif everywhere, or Lora with Georgia support?</h1>
+      <p>
+        Same palette, same layout, same content. The only thing changing here is how much of the interface gets
+        the serif treatment, with `Georgia` replacing `Manrope` as the support font.
+      </p>
+    </section>
+
+    <section class="grid">
+      <article class="card all-lora">
+        <div class="card-top">
+          <div>
+            <strong>Lora Everywhere</strong>
+            <div class="pairing">Headings, body, nav, buttons, cards</div>
+          </div>
+          <span class="eyebrow">Unified</span>
+        </div>
+
+        <div class="mock">
+          <div class="nav">
+            <div class="brand"><span class="brand-mark">A</span>Andrew's Portfolio</div>
+            <div class="nav-links"><span>Projects</span><span>About</span><span>Contact</span></div>
+          </div>
+
+          <section class="hero">
+            <h2>I build playable software.</h2>
+            <p>
+              Everything leans softer, more editorial, and more classically styled. The site feels cohesive,
+              but the controls and smaller UI elements lose a bit of crispness.
+            </p>
+            <div class="button-row">
+              <span class="button primary">Explore work</span>
+              <span class="button secondary">Start a conversation</span>
+            </div>
+          </section>
+
+          <article class="project">
+            <div class="project-top"><span>01</span><span>Playable build</span></div>
+            <div>
+              <h3>Apollo 11 Lander</h3>
+              <p>A browser rebuild of the original C++ lander project with fuel tracking, landing state logic, and score flow.</p>
+            </div>
+            <div class="tags"><span class="tag">C++</span><span class="tag">Physics</span><span class="tag">Web port</span></div>
+          </article>
+        </div>
+
+        <div class="notes">
+          Best if you want the whole site to feel softer and more literary. Risk: buttons, nav, and project UI may feel less precise.
+        </div>
+      </article>
+
+      <article class="card lora-georgia">
+        <div class="card-top">
+          <div>
+            <strong>Lora + Georgia</strong>
+            <div class="pairing">Lora for headings, Georgia for body/UI</div>
+          </div>
+          <span class="eyebrow">All Serif</span>
+        </div>
+
+        <div class="mock">
+          <div class="nav">
+            <div class="brand"><span class="brand-mark">A</span>Andrew's Portfolio</div>
+            <div class="nav-links"><span>Projects</span><span>About</span><span>Contact</span></div>
+          </div>
+
+          <section class="hero">
+            <h2>I build playable software.</h2>
+            <p>
+              This keeps the heading graceful, but gives the rest of the site a more classic, bookish texture.
+              It feels warmer than Manrope and more intentional than Lora everywhere.
+            </p>
+            <div class="button-row">
+              <span class="button primary">Explore work</span>
+              <span class="button secondary">Start a conversation</span>
+            </div>
+          </section>
+
+          <article class="project">
+            <div class="project-top"><span>01</span><span>Playable build</span></div>
+            <div>
+              <h3>Apollo 11 Lander</h3>
+              <p>A browser rebuild of the original C++ lander project with fuel tracking, landing state logic, and score flow.</p>
+            </div>
+            <div class="tags"><span class="tag">C++</span><span class="tag">Physics</span><span class="tag">Web port</span></div>
+          </article>
+        </div>
+
+        <div class="notes">
+          Best if you want the whole site to stay in a classic serif mood, but with cleaner hierarchy than Lora-only.
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

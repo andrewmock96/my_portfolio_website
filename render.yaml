@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: andrew-portfolio
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_SECRET_KEY
+        generateValue: true
+      - key: SITE_TITLE
+        value: Andrew's Portfolio
+      - key: SITE_DESCRIPTION
+        value: Personal projects, experiments, and notes from Andrew.
+      - key: SITE_EMAIL
+        sync: false
+      - key: SITE_URL
+        sync: false
+      - key: GITHUB_URL
+        sync: false
+      - key: LINKEDIN_URL
+        sync: false

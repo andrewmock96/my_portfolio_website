@@ -3,27 +3,58 @@
 {% block title %}{{ site_title }} | Developer & Game Builder{% endblock %}
 
 {% block content %}
-<section class="hero">
-    <div class="hero-copy">
-        <p class="eyebrow"><span class="status-dot"></span> Available for interesting work</p>
-        <h1>I build playable software.</h1>
-        <p class="hero-intro">I'm Andrew, a developer who likes turning physics, game rules, and complicated systems into practical, thoughtful software.</p>
-        <div class="hero-actions">
-            <a class="button primary" href="{{ url_for('projects') }}">Explore my work <span aria-hidden="true">&rarr;</span></a>
-            <a class="button secondary" href="{{ url_for('contact') }}">Start a conversation</a>
-        </div>
+<section class="welcome-summary" aria-label="Welcome">
+    <h2>Welcome to my portfolio</h2>
+    <p>Welcome to my portfolio! I'm Andrew Mock, a Software Engineering student passionate about building reliable, user-focused applications that solve real-world problems. My projects range from physics simulations and game development to full-stack web applications, allowing me to explore everything from algorithms and object-oriented design to modern web technologies. I'm always looking for opportunities to learn, take on new challenges, and create software that makes a meaningful impact. Feel free to explore my projects and see what I've been working on.</p>
+</section>
+
+<section class="section-heading section-heading-compact">
+    <div>
+        <p class="eyebrow">Experience</p>
+        <h2>Job history</h2>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-        <div class="code-window">
-            <div class="window-bar"><span></span><span></span><span></span></div>
-            <pre><code><span class="code-muted">// currently building</span>
-const developer = {
-  name: <span class="code-accent">"Andrew"</span>,
-  focus: <span class="code-accent">"C++ games"</span>,
-  curiosity: Infinity
-};</code></pre>
-        </div>
+</section>
+
+<section class="experience-shell" aria-label="Job history">
+    <div class="experience-list">
+        {% for job in jobs %}
+            <article class="experience-entry">
+                <div class="experience-header">
+                    <h3>{{ job.company }}</h3>
+                    <p>{{ job.title }}</p>
+                </div>
+                {% if job.summary %}
+                    <p class="experience-summary">{{ job.summary }}</p>
+                {% else %}
+                    <p class="experience-summary experience-summary-muted">Summary to be added.</p>
+                {% endif %}
+            </article>
+        {% endfor %}
     </div>
+</section>
+
+<section class="section-heading section-heading-compact">
+    <div>
+        <h2>Websites</h2>
+    </div>
+</section>
+
+<section class="website-grid" aria-label="Websites built">
+    {% for website in websites %}
+        <article class="website-card">
+            <div class="website-topline">
+                <span>Live site</span>
+                <a href="{{ website.url }}" target="_blank" rel="noreferrer">Visit <span aria-hidden="true">&nearr;</span></a>
+            </div>
+            <div>
+                <h3>{{ website.name }}</h3>
+                <p>{{ website.summary }}</p>
+            </div>
+            <div class="website-link-row">
+                <a href="{{ website.url }}" target="_blank" rel="noreferrer">{{ website.url }}</a>
+            </div>
+        </article>
+    {% endfor %}
 </section>
 
 <section class="section-heading">

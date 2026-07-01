@@ -24,8 +24,8 @@ PROJECTS = [
     {
         "slug": "apollo",
         "title": "Apollo 11 Lander",
-        "description": "A C++ lunar landing simulator with thrust, gravity, collision checks, and a playable OpenGL window.",
-        "tags": ["C++", "OpenGL", "freeglut", "Physics"],
+        "description": "A C++ physics simulation inspired by NASA's historic moon landing. The project recreates lunar gravity, thrust, momentum, and collision mechanics, allowing players to safely land a spacecraft using realistic physics principles. Built with an object-oriented architecture, the simulation emphasizes clean class design, modular components, and mathematical modeling while demonstrating proficiency in game loops, physics calculations, user input handling, and software engineering fundamentals.",
+        "tags": ["C++", "Physics sim", "Gameplay systems", "OOP design"],
         "status": "Playable build",
         "play_endpoint": "apollo11_game",
         "preview_image": "wasm/apollo11/menu-background.png",
@@ -35,8 +35,8 @@ PROJECTS = [
     {
         "slug": "artillery",
         "title": "Artillery Simulator",
-        "description": "A trajectory simulator that models projectile motion, aiming, and terrain interaction in C++.",
-        "tags": ["C++", "OpenGL", "Simulation", "Unit tests"],
+        "description": "A C++ physics simulation that models the firing of an M777 howitzer using realistic projectile motion and environmental physics. The application calculates factors such as velocity, acceleration, gravity, launch angle, and terrain interactions to accurately simulate artillery trajectories and impact points. Developed with an object-oriented architecture and OpenGL-based visualization, the project demonstrates strong problem-solving skills in mathematical modeling, simulation development, class design, and real-time user interaction while reinforcing core software engineering principles.",
+        "tags": ["C++", "Ballistics", "OpenGL", "Simulation"],
         "status": "Playable build",
         "play_endpoint": "artillery_game",
         "preview_image": "images/artillery-menu-day-desert.png",
@@ -45,14 +45,40 @@ PROJECTS = [
     },
     {
         "slug": "chess",
-        "title": "Chess Project",
-        "description": "A desktop chess game built around board state, legal moves, special rules, and an OpenGL interface.",
-        "tags": ["C++", "OpenGL", "OOP", "Game logic"],
+        "title": "Chess",
+        "description": "A fully featured C++ implementation of the classic game of chess, built using object-oriented design principles and modern software engineering practices. The project includes complete game logic, move validation, special rules such as castling, en passant, and pawn promotion, turn management, and a graphical user interface for interactive gameplay. Designed with extensibility and maintainability in mind, the application demonstrates proficiency in data structures, algorithms, inheritance, polymorphism, event-driven programming, and the development of complex, rule-based systems.",
+        "tags": ["C++", "Game logic", "Rule engine", "OOP design"],
         "status": "Playable build",
         "play_endpoint": "chess_game",
         "preview_image": "images/chess-menu-preview.png",
         "download_filename": "downloads/chess-project-windows.zip",
         "source_url": None,
+    },
+]
+
+JOB_HISTORY = [
+    {
+        "company": "Going Indie",
+        "title": "Intern",
+        "summary": "As a Software Engineering Intern at Going Indie, I contribute to the development of tools that help game developers make informed business decisions. My work has included performing quality assurance testing across internal applications and designing a market research platform that aggregates Steam data into actionable insights for developers. The tool leverages APIs, databases, and data analysis to simplify market research, helping studios evaluate competition, player trends, and opportunities within the gaming industry. Through this internship, I've gained valuable experience in collaborative software development, product design, and building real-world tools that provide measurable value to users.",
+    },
+    {
+        "company": "360Epoxy",
+        "title": "Contract Web Developer",
+        "summary": "As a contract web developer for 360Epoxy, I designed, developed, and deployed a custom business website using Flask, HTML, CSS, and JavaScript. Working directly with the client, I gathered requirements, implemented new features, and delivered a responsive, production-ready website tailored to their business needs. I also integrated a custom contact form with the company's CRM, allowing customer inquiries to flow directly into their lead management system and improving communication with prospective clients. Throughout the project, I focused on security, performance, and creating a seamless user experience.",
+    },
+    {
+        "company": "Textron Aviation",
+        "title": "Trim Technician",
+        "summary": "During my time at Textron Aviation, I worked as part of a high-performing manufacturing team responsible for producing composite components for commercial aircraft. I consistently ranked among the top performers by maintaining quality, efficiency, and strong communication with teammates and supervisors. The role taught me the importance of precision, teamwork, technical documentation, and problem-solving in a fast-paced, quality-driven engineering environment.",
+    },
+]
+
+WEBSITES = [
+    {
+        "name": "360Epoxy",
+        "url": "https://360-epoxy.com",
+        "summary": "A custom business website designed and developed with Flask, HTML, CSS, and JavaScript, built to support lead generation, client communication, and a polished production-ready web presence.",
     },
 ]
 
@@ -79,7 +105,12 @@ def inject_site_metadata():
 
 @app.route("/")
 def home():
-    return render_template("index.html", projects=PROJECTS[:3])
+    return render_template(
+        "index.html",
+        projects=PROJECTS[:3],
+        jobs=JOB_HISTORY,
+        websites=WEBSITES,
+    )
 
 
 @app.route("/projects")
@@ -131,6 +162,13 @@ def sitemap():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+
+@app.route("/design/job-history-options")
+def job_history_options():
+    preview_path = os.path.join("design-system", "mockups", "job-history-background-options.html")
+    with open(preview_path, "r", encoding="utf-8") as preview_file:
+        return Response(preview_file.read(), mimetype="text/html")
 
 
 @app.errorhandler(404)
