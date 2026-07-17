@@ -12,7 +12,7 @@ class PortfolioSiteTests(unittest.TestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertIn("Projects worth a closer look", response.get_data(as_text=True))
-        self.assertIn("Apollo 11 Lander", response.get_data(as_text=True))
+        self.assertIn("Satellite Orbit Simulator", response.get_data(as_text=True))
         self.assertIn("Going Indie", response.get_data(as_text=True))
         self.assertIn("360Epoxy", response.get_data(as_text=True))
         self.assertIn("360Epoxy", response.get_data(as_text=True))
@@ -24,6 +24,7 @@ class PortfolioSiteTests(unittest.TestCase):
 
     def test_projects_page_lists_all_projects(self):
         body = self.client.get("/projects").get_data(as_text=True)
+        self.assertIn("Satellite Orbit Simulator", body)
         self.assertIn("Apollo 11 Lander", body)
         self.assertIn("Artillery Simulator", body)
         self.assertIn("Chess", body)

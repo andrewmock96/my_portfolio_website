@@ -22,6 +22,17 @@ app.config["SESSION_COOKIE_SECURE"] = IS_PRODUCTION
 
 PROJECTS = [
     {
+        "slug": "satellite-orbit",
+        "title": "Satellite Orbit Simulator",
+        "description": "An interactive C++ orbital mechanics simulation featuring a controllable spacecraft and a populated Earth orbit with GPS, Hubble, Sputnik, Starlink, and Crew Dragon satellites. The simulator applies gravity and velocity each frame, detects satellite and Earth collisions, and models objects breaking into dynamic debris. Its inheritance-based architecture, real-time OpenGL rendering, and automated physics tests demonstrate object-oriented design, polymorphism, mathematical modeling, and collision systems.",
+        "tags": ["C++", "Orbital mechanics", "OpenGL", "Inheritance"],
+        "status": "Windows build",
+        "play_endpoint": None,
+        "preview_image": None,
+        "download_filename": "downloads/satellite-orbit-simulator-windows.zip",
+        "source_url": None,
+    },
+    {
         "slug": "apollo",
         "title": "Apollo 11 Lander",
         "description": "A C++ physics simulation inspired by NASA's historic moon landing. The project recreates lunar gravity, thrust, momentum, and collision mechanics, allowing players to safely land a spacecraft using realistic physics principles. Built with an object-oriented architecture, the simulation emphasizes clean class design, modular components, and mathematical modeling while demonstrating proficiency in game loops, physics calculations, user input handling, and software engineering fundamentals.",

@@ -298,6 +298,33 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   background: #ffb84d;
 }
+.project-preview-satellite-orbit {
+  background:
+    radial-gradient(circle at 50% 105%, #3f7fac 0 24%, #d7e6ef 24.5% 27%, transparent 27.5%),
+    radial-gradient(circle at 50% 105%, transparent 0 48%, rgba(181, 244, 74, .34) 48.5% 49%, transparent 49.5%),
+    radial-gradient(circle at 18% 22%, #f2f4f7 0 .08rem, transparent .1rem),
+    radial-gradient(circle at 77% 28%, #f2f4f7 0 .08rem, transparent .1rem),
+    linear-gradient(180deg, #07101e, #111c2c);
+}
+.project-preview-satellite-orbit::before {
+  left: 66%;
+  top: 29%;
+  width: 1.15rem;
+  height: .68rem;
+  border: .2rem solid #cbd5df;
+  background: #596b7b;
+  transform: rotate(-18deg);
+  box-shadow: -1.2rem 0 0 -.08rem #7396b2, 1.2rem 0 0 -.08rem #7396b2;
+}
+.project-preview-satellite-orbit::after {
+  left: 25%;
+  top: 48%;
+  width: .62rem;
+  height: .62rem;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 1.7rem -1.1rem 0 -.12rem #b8c8d5, 4.5rem 1.7rem 0 -.17rem #ffb84d;
+}
 .project-preview-artillery {
   background:
     linear-gradient(165deg, transparent 0 52%, #2d5d45 53% 64%, #141812 65%),
