@@ -683,6 +683,13 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
   background: rgba(255,255,255,.7);
   box-shadow: 0 1rem 2.5rem rgba(68, 87, 109, .08);
 }
+.about-gallery-item.hunting-shot {
+  grid-column: 1 / -1;
+  height: clamp(28rem, 52vw, 42rem);
+}
+.about-gallery-item.hunting-shot img {
+  object-position: center 42%;
+}
 .about-gallery-item.wide {
   aspect-ratio: auto;
 }
@@ -783,6 +790,7 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
   .hero, .about-hero, .about-story { grid-template-columns: 1fr; }
   .about-pillars { grid-template-columns: 1fr 1fr; }
   .about-gallery { grid-template-columns: 1fr; }
+  .about-gallery-item.hunting-shot { grid-column: auto; height: clamp(24rem, 75vw, 34rem); }
   .hero { min-height: auto; padding-bottom: 5rem; }
   .project-grid { grid-template-columns: 1fr 1fr; }
   .game-header { align-items: stretch; flex-direction: column; }

@@ -22,6 +22,13 @@ class PortfolioSiteTests(unittest.TestCase):
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 200)
 
+    def test_about_page_includes_hunting_photo(self):
+        body = self.client.get("/about").get_data(as_text=True)
+        self.assertIn("images/about/2024-doe-hunt.webp", body)
+        image_response = self.client.get("/static/images/about/2024-doe-hunt.webp")
+        self.assertEqual(image_response.status_code, 200)
+        image_response.close()
+
     def test_projects_page_lists_all_projects(self):
         body = self.client.get("/projects").get_data(as_text=True)
         self.assertIn("Satellite Orbit Simulator", body)
