@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satellite Orbit Simulator</title>
+  <link rel="stylesheet" href="satellite-orbit.css">
+</head>
+<body>
+  <main class="game-shell">
+    <canvas id="gameCanvas" aria-label="Satellite Orbit Simulator canvas"></canvas>
+    <div class="hud" aria-live="polite">
+      <div class="hud-panel"><span>Mission</span><strong id="statusValue">Orbit stable</strong></div>
+      <div class="hud-panel"><span>Altitude</span><strong id="altitudeValue">400 km</strong></div>
+      <div class="hud-panel"><span>Velocity</span><strong id="velocityValue">7.67 km/s</strong></div>
+      <div class="hud-panel"><span>Objects</span><strong id="objectsValue">11 tracked</strong></div>
+    </div>
+    <div class="legend" aria-hidden="true"><span class="ship-dot"></span> Your ship <span class="satellite-dot"></span> Satellites <span class="debris-dot"></span> Debris</div>
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-panel">
+        <p class="eyebrow">Playable browser port</p>
+        <h1>Satellite Orbit Simulator</h1>
+        <p>Navigate a crowded Earth orbit. Rotate and thrust to change trajectory, fire projectiles, and watch collisions turn satellites into moving debris.</p>
+        <button id="startButton" type="button">Start simulation</button>
+      </div>
+    </div>
+  </main>
+  <script src="satellite-orbit.js"></script>
+</body>
+</html>

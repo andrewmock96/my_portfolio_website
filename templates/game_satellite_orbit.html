@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Satellite Orbit Simulator | {{ site_title }}{% endblock %}
+{% block description %}An interactive C++ orbital mechanics simulation with satellites, spacecraft controls, collisions, and debris.{% endblock %}
+{% block main_class %}game-page{% endblock %}
+
+{% block content %}
+<header class="game-header">
+    <div>
+        <p class="eyebrow">Playable browser port</p>
+        <h1>Satellite Orbit Simulator</h1>
+        <p>An interactive C++ orbital mechanics simulation featuring a controllable spacecraft and a populated Earth orbit with GPS, Hubble, Sputnik, Starlink, and Crew Dragon satellites. Gravity drives every orbit while collisions create fields of moving debris.</p>
+    </div>
+    <a class="button secondary" href="{{ url_for('projects') }}">Back to projects</a>
+</header>
+
+<section class="game-frame-shell" aria-label="Satellite Orbit Simulator playable game">
+    <iframe
+        class="game-frame"
+        src="{{ url_for('static', filename='games/satellite-orbit/index.html') }}"
+        title="Satellite Orbit Simulator game"
+        allow="fullscreen"
+        loading="eager"></iframe>
+</section>
+
+<section class="game-controls-panel" aria-label="Satellite Orbit Simulator controls">
+    <span><kbd>A</kbd><kbd>D</kbd> or <kbd>&larr;</kbd><kbd>&rarr;</kbd> rotate</span>
+    <span><kbd>W</kbd> or <kbd>&uarr;</kbd> thrust</span>
+    <span><kbd>Space</kbd> fire</span>
+    <span><kbd>R</kbd> reset orbit</span>
+    <span><kbd>Enter</kbd> start</span>
+</section>
+{% endblock %}

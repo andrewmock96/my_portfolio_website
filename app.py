@@ -26,21 +26,21 @@ PROJECTS = [
         "title": "Satellite Orbit Simulator",
         "description": "An interactive C++ orbital mechanics simulation featuring a controllable spacecraft and a populated Earth orbit with GPS, Hubble, Sputnik, Starlink, and Crew Dragon satellites. The simulator applies gravity and velocity each frame, detects satellite and Earth collisions, and models objects breaking into dynamic debris. Its inheritance-based architecture, real-time OpenGL rendering, and automated physics tests demonstrate object-oriented design, polymorphism, mathematical modeling, and collision systems.",
         "tags": ["C++", "Orbital mechanics", "OpenGL", "Inheritance"],
-        "status": "Windows build",
-        "play_endpoint": None,
+        "status": "Playable build",
+        "play_endpoint": "satellite_orbit_game",
         "preview_image": None,
         "download_filename": "downloads/satellite-orbit-simulator-windows.zip",
         "source_url": None,
     },
     {
-        "slug": "apollo",
-        "title": "Apollo 11 Lander",
-        "description": "A C++ physics simulation inspired by NASA's historic moon landing. The project recreates lunar gravity, thrust, momentum, and collision mechanics, allowing players to safely land a spacecraft using realistic physics principles. Built with an object-oriented architecture, the simulation emphasizes clean class design, modular components, and mathematical modeling while demonstrating proficiency in game loops, physics calculations, user input handling, and software engineering fundamentals.",
-        "tags": ["C++", "Physics sim", "Gameplay systems", "OOP design"],
+        "slug": "chess",
+        "title": "Chess",
+        "description": "A fully featured C++ implementation of the classic game of chess, built using object-oriented design principles and modern software engineering practices. The project includes complete game logic, move validation, special rules such as castling, en passant, and pawn promotion, turn management, and a graphical user interface for interactive gameplay. Designed with extensibility and maintainability in mind, the application demonstrates proficiency in data structures, algorithms, inheritance, polymorphism, event-driven programming, and the development of complex, rule-based systems.",
+        "tags": ["C++", "Game logic", "Rule engine", "OOP design"],
         "status": "Playable build",
-        "play_endpoint": "apollo11_game",
-        "preview_image": "wasm/apollo11/menu-background.png",
-        "download_filename": "downloads/apollo11-lander-windows.zip",
+        "play_endpoint": "chess_game",
+        "preview_image": "images/chess-menu-preview.png",
+        "download_filename": "downloads/chess-project-windows.zip",
         "source_url": None,
     },
     {
@@ -55,14 +55,14 @@ PROJECTS = [
         "source_url": None,
     },
     {
-        "slug": "chess",
-        "title": "Chess",
-        "description": "A fully featured C++ implementation of the classic game of chess, built using object-oriented design principles and modern software engineering practices. The project includes complete game logic, move validation, special rules such as castling, en passant, and pawn promotion, turn management, and a graphical user interface for interactive gameplay. Designed with extensibility and maintainability in mind, the application demonstrates proficiency in data structures, algorithms, inheritance, polymorphism, event-driven programming, and the development of complex, rule-based systems.",
-        "tags": ["C++", "Game logic", "Rule engine", "OOP design"],
+        "slug": "apollo",
+        "title": "Apollo 11 Lander",
+        "description": "A C++ physics simulation inspired by NASA's historic moon landing. The project recreates lunar gravity, thrust, momentum, and collision mechanics, allowing players to safely land a spacecraft using realistic physics principles. Built with an object-oriented architecture, the simulation emphasizes clean class design, modular components, and mathematical modeling while demonstrating proficiency in game loops, physics calculations, user input handling, and software engineering fundamentals.",
+        "tags": ["C++", "Physics sim", "Gameplay systems", "OOP design"],
         "status": "Playable build",
-        "play_endpoint": "chess_game",
-        "preview_image": "images/chess-menu-preview.png",
-        "download_filename": "downloads/chess-project-windows.zip",
+        "play_endpoint": "apollo11_game",
+        "preview_image": "wasm/apollo11/menu-background.png",
+        "download_filename": "downloads/apollo11-lander-windows.zip",
         "source_url": None,
     },
 ]
@@ -134,6 +134,11 @@ def apollo11_game():
     return render_template("game_apollo11.html")
 
 
+@app.route("/games/satellite-orbit")
+def satellite_orbit_game():
+    return render_template("game_satellite_orbit.html")
+
+
 @app.route("/games/artillery")
 def artillery_game():
     return render_template("game_artillery.html")
@@ -161,7 +166,7 @@ def sitemap():
     ElementTree.register_namespace("", namespace)
     urlset = ElementTree.Element(f"{{{namespace}}}urlset")
 
-    for endpoint in ("home", "projects", "apollo11_game", "artillery_game", "chess_game", "about", "contact"):
+    for endpoint in ("home", "projects", "satellite_orbit_game", "apollo11_game", "artillery_game", "chess_game", "about", "contact"):
         url_element = ElementTree.SubElement(urlset, f"{{{namespace}}}url")
         location = ElementTree.SubElement(url_element, f"{{{namespace}}}loc")
         location.text = f"{site_url()}{url_for(endpoint)}"
