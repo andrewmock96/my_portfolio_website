@@ -28,7 +28,7 @@ PROJECTS = [
         "tags": ["C++", "Orbital mechanics", "OpenGL", "Inheritance"],
         "status": "Playable build",
         "play_endpoint": "satellite_orbit_game",
-        "preview_image": None,
+        "preview_image": "images/satellite-orbit-preview.webp",
         "download_filename": "downloads/satellite-orbit-simulator-windows.zip",
         "source_url": None,
     },

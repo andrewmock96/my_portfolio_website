@@ -32,6 +32,7 @@ class PortfolioSiteTests(unittest.TestCase):
     def test_projects_page_lists_all_projects(self):
         body = self.client.get("/projects").get_data(as_text=True)
         self.assertIn("Satellite Orbit Simulator", body)
+        self.assertIn("images/satellite-orbit-preview.webp", body)
         self.assertIn("Apollo 11 Lander", body)
         self.assertIn("Artillery Simulator", body)
         self.assertIn("Chess", body)

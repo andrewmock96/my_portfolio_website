@@ -11,7 +11,7 @@
     <p>Explore interactive browser demos and downloadable Windows builds.</p>
 </header>
 
-<section class="project-grid" aria-label="All projects">
+<section class="project-grid project-grid-all" aria-label="All projects">
     {% for project in projects %}
         {% set project_number = loop.index %}
         {% include "_project_card.html" %}

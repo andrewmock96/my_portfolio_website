@@ -221,6 +221,7 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
 .section-heading-compact { margin-bottom: 1.2rem; }
 .text-link { color: var(--accent); font-size: .85rem; font-weight: 700; white-space: nowrap; }
 .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.project-grid-all { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .project-card {
   display: flex;
   flex-direction: column;
@@ -297,31 +298,6 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
   height: 1.5rem;
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   background: #ffb84d;
-}
-.project-preview-satellite-orbit {
-  background:
-    linear-gradient(90deg, transparent 42%, #0a9712 42% 48%, #c5b788 48% 57%, transparent 57%) 50% 78% / 4.5rem 1rem no-repeat,
-    radial-gradient(circle at 50% 78%, #0909e8 0 2.25rem, transparent 2.3rem),
-    #000;
-}
-.project-preview-satellite-orbit::before {
-  left: 66%;
-  top: 29%;
-  width: 1.15rem;
-  height: .68rem;
-  border: .2rem solid #cbd5df;
-  background: #17179d;
-  transform: rotate(-18deg);
-  box-shadow: -1.2rem 0 0 -.08rem #17179d, 1.2rem 0 0 -.08rem #17179d;
-}
-.project-preview-satellite-orbit::after {
-  left: 25%;
-  top: 48%;
-  width: .62rem;
-  height: .62rem;
-  border-radius: 50%;
-  background: #ffff00;
-  box-shadow: 1.7rem -1.1rem 0 -.12rem #d8d8d8, 4.5rem 1.7rem 0 -.17rem #ffff00;
 }
 .project-preview-artillery {
   background:
@@ -794,6 +770,9 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
   .hero { min-height: auto; padding-bottom: 5rem; }
   .project-grid { grid-template-columns: 1fr 1fr; }
   .game-header { align-items: stretch; flex-direction: column; }
+}
+@media (min-width: 851px) and (max-width: 1050px) {
+  .project-grid-all { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
   main, .site-nav, .site-footer { width: min(100% - 1.5rem, var(--max-width)); }
