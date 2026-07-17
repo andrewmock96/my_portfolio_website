@@ -21,7 +21,7 @@
   let height = 500;
   let running = false;
   let lastTime = 0;
-  let stars = [];
+  let earthSprite = null;
   let satellites = [];
   let debris = [];
   let projectiles = [];
@@ -58,9 +58,7 @@
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    stars = Array.from({ length: Math.max(70, Math.floor(width * height / 7000)) }, () => ({
-      x: Math.random() * width, y: Math.random() * height, r: Math.random() * 1.25 + .25, a: Math.random() * .65 + .2,
-    }));
+    earthSprite = createEarthSprite();
   }
 
   function gravity(body, dt) {
@@ -142,41 +140,99 @@
 
   function point(body, camera) { return { x: camera.cx + body.x * camera.scale, y: camera.cy - body.y * camera.scale }; }
 
-  function drawOrbit(radius, camera) {
-    ctx.beginPath(); ctx.arc(camera.cx, camera.cy, radius * camera.scale, 0, TAU);
-    ctx.strokeStyle = "rgba(129, 168, 200, .14)"; ctx.lineWidth = 1; ctx.stroke();
+  function createEarthSprite() {
+    const sprite = document.createElement("canvas");
+    const pixels = 72;
+    sprite.width = pixels;
+    sprite.height = pixels;
+    const pixelsContext = sprite.getContext("2d");
+    pixelsContext.imageSmoothingEnabled = false;
+    pixelsContext.fillStyle = "#0909e8";
+    pixelsContext.beginPath();
+    pixelsContext.arc(pixels / 2, pixels / 2, pixels / 2 - 1, 0, TAU);
+    pixelsContext.fill();
+    pixelsContext.save();
+    pixelsContext.beginPath();
+    pixelsContext.arc(pixels / 2, pixels / 2, pixels / 2 - 1, 0, TAU);
+    pixelsContext.clip();
+    const land = [
+      [28, 1, 18, 7], [20, 7, 28, 8], [24, 14, 18, 8], [15, 20, 26, 7],
+      [9, 27, 22, 6], [5, 40, 27, 7], [13, 47, 34, 7], [19, 54, 39, 8],
+      [30, 62, 28, 7], [51, 22, 20, 7], [45, 31, 25, 7], [48, 39, 18, 7],
+    ];
+    for (const [x, y, w, h] of land) {
+      pixelsContext.fillStyle = (x + y) % 3 ? "#0b9d13" : "#c8b98d";
+      pixelsContext.fillRect(x, y, w, h);
+    }
+    pixelsContext.fillStyle = "#eee";
+    pixelsContext.fillRect(29, 20, 13, 5);
+    pixelsContext.fillRect(34, 25, 16, 6);
+    pixelsContext.fillRect(39, 31, 11, 5);
+    pixelsContext.restore();
+    return sprite;
+  }
+
+  function polygon(points, fill, stroke = "#d7d7d7", lineWidth = 2) {
+    ctx.beginPath();
+    points.forEach(([x, y], index) => index ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lineWidth; ctx.stroke(); }
+  }
+
+  function drawGps() {
+    ctx.fillStyle = "#17179d";
+    ctx.strokeStyle = "#ddd";
+    ctx.lineWidth = 2;
+    for (const x of [-25, -17, 15, 23]) { ctx.fillRect(x, -8, 7, 16); ctx.strokeRect(x, -8, 7, 16); }
+    polygon([[-13, -8], [13, -5], [9, 8], [-11, 5]], "#ffff00", "#eee", 1.5);
+  }
+
+  function drawHubble() {
+    ctx.fillStyle = "#17179d";
+    ctx.strokeStyle = "#aaa";
+    ctx.lineWidth = 2;
+    ctx.fillRect(-23, -5, 14, 10); ctx.strokeRect(-23, -5, 14, 10);
+    ctx.fillRect(9, -5, 14, 10); ctx.strokeRect(9, -5, 14, 10);
+    polygon([[-8, -7], [8, -7], [11, 7], [0, 12], [-10, 6]], "#ccc", "#999", 1.5);
+  }
+
+  function drawShip(body) {
+    ctx.rotate(-body.angle + Math.PI / 2);
+    polygon([[0, -25], [7, -16], [9, 5], [22, 14], [22, 21], [5, 16], [0, 25], [-5, 16], [-22, 21], [-22, 14], [-9, 5], [-7, -16]], "#23239f", "#ccc", 3);
+    ctx.fillStyle = "#bcbcbc";
+    ctx.fillRect(-4, -18, 8, 30);
+    if (keys.has("ArrowUp") || keys.has("KeyW")) polygon([[-4, 22], [0, 34], [4, 22]], "#ffff00", null);
   }
 
   function drawBody(body, camera) {
     if (!body.alive) return;
     const p = point(body, camera);
     if (p.x < -20 || p.x > width + 20 || p.y < -20 || p.y > height + 20) return;
-    const size = body === ship ? 8 : body.radius <= 25 ? 2.2 : 4.3;
     ctx.save(); ctx.translate(p.x, p.y);
     if (body === ship) {
-      ctx.rotate(-body.angle);
-      ctx.beginPath(); ctx.moveTo(10, 0); ctx.lineTo(-7, -5); ctx.lineTo(-4, 0); ctx.lineTo(-7, 5); ctx.closePath();
-      ctx.fillStyle = body.alive ? "#b5f44a" : "#687784"; ctx.shadowColor = "#b5f44a"; ctx.shadowBlur = 10; ctx.fill();
-      if (keys.has("ArrowUp") || keys.has("KeyW")) { ctx.beginPath(); ctx.moveTo(-5, -3); ctx.lineTo(-14, 0); ctx.lineTo(-5, 3); ctx.fillStyle = "#ffb84d"; ctx.fill(); }
+      drawShip(body);
+    } else if (body.name && body.name.includes("GPS")) {
+      ctx.rotate(Math.atan2(body.vy, body.vx)); drawGps();
+    } else if (body.name === "Hubble" || body.name === "Starlink") {
+      ctx.rotate(Math.atan2(body.vy, body.vx)); drawHubble();
+    } else if (body.radius <= 25) {
+      ctx.fillStyle = body.color; ctx.fillRect(-3, -3, 6, 6);
     } else {
-      ctx.fillStyle = body.color; ctx.shadowColor = body.color; ctx.shadowBlur = body.radius <= 25 ? 3 : 7;
-      ctx.fillRect(-size / 2, -size / 2, size, size);
-      if (body.radius > 25) { ctx.fillStyle = "#668ca8"; ctx.fillRect(-size * 1.5, -1, size * 3, 2); }
+      ctx.rotate(Math.atan2(body.vy, body.vx));
+      ctx.fillStyle = body.color; ctx.strokeStyle = "#ccc"; ctx.lineWidth = 2;
+      ctx.fillRect(-7, -12, 14, 24); ctx.strokeRect(-7, -12, 14, 24);
     }
     ctx.restore();
   }
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
-    for (const star of stars) { ctx.globalAlpha = star.a; ctx.fillStyle = "#e9f2fa"; ctx.beginPath(); ctx.arc(star.x, star.y, star.r, 0, TAU); ctx.fill(); }
-    ctx.globalAlpha = 1;
     const camera = view();
-    [6800, 7200, 26560].forEach((radius) => drawOrbit(radius, camera));
     const earthRadius = EARTH_RADIUS * camera.scale;
-    const gradient = ctx.createRadialGradient(camera.cx - earthRadius * .28, camera.cy - earthRadius * .32, earthRadius * .08, camera.cx, camera.cy, earthRadius);
-    gradient.addColorStop(0, "#8cd5ec"); gradient.addColorStop(.42, "#2477ae"); gradient.addColorStop(.78, "#135184"); gradient.addColorStop(1, "#071b37");
-    ctx.beginPath(); ctx.arc(camera.cx, camera.cy, earthRadius, 0, TAU); ctx.fillStyle = gradient; ctx.shadowColor = "rgba(72, 174, 230, .55)"; ctx.shadowBlur = 24; ctx.fill(); ctx.shadowBlur = 0;
-    ctx.globalAlpha = .3; ctx.fillStyle = "#9cbf80"; ctx.beginPath(); ctx.ellipse(camera.cx - earthRadius * .22, camera.cy - earthRadius * .05, earthRadius * .18, earthRadius * .33, -.55, 0, TAU); ctx.fill(); ctx.globalAlpha = 1;
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(earthSprite, camera.cx - earthRadius, camera.cy - earthRadius, earthRadius * 2, earthRadius * 2);
     for (const body of [...satellites, ...debris, ...projectiles]) drawBody(body, camera);
     drawBody(ship, camera);
     if (flash) { const p = point(flash, camera); ctx.beginPath(); ctx.arc(p.x, p.y, (1 - flash.life) * 28 + 5, 0, TAU); ctx.strokeStyle = `rgba(255,184,77,${flash.life})`; ctx.lineWidth = 3; ctx.stroke(); }

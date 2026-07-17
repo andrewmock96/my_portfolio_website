@@ -300,11 +300,9 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
 }
 .project-preview-satellite-orbit {
   background:
-    radial-gradient(circle at 50% 105%, #3f7fac 0 24%, #d7e6ef 24.5% 27%, transparent 27.5%),
-    radial-gradient(circle at 50% 105%, transparent 0 48%, rgba(181, 244, 74, .34) 48.5% 49%, transparent 49.5%),
-    radial-gradient(circle at 18% 22%, #f2f4f7 0 .08rem, transparent .1rem),
-    radial-gradient(circle at 77% 28%, #f2f4f7 0 .08rem, transparent .1rem),
-    linear-gradient(180deg, #07101e, #111c2c);
+    linear-gradient(90deg, transparent 42%, #0a9712 42% 48%, #c5b788 48% 57%, transparent 57%) 50% 78% / 4.5rem 1rem no-repeat,
+    radial-gradient(circle at 50% 78%, #0909e8 0 2.25rem, transparent 2.3rem),
+    #000;
 }
 .project-preview-satellite-orbit::before {
   left: 66%;
@@ -312,9 +310,9 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
   width: 1.15rem;
   height: .68rem;
   border: .2rem solid #cbd5df;
-  background: #596b7b;
+  background: #17179d;
   transform: rotate(-18deg);
-  box-shadow: -1.2rem 0 0 -.08rem #7396b2, 1.2rem 0 0 -.08rem #7396b2;
+  box-shadow: -1.2rem 0 0 -.08rem #17179d, 1.2rem 0 0 -.08rem #17179d;
 }
 .project-preview-satellite-orbit::after {
   left: 25%;
@@ -322,8 +320,8 @@ pre { margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); color: #4a5a6d; font: cla
   width: .62rem;
   height: .62rem;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 1.7rem -1.1rem 0 -.12rem #b8c8d5, 4.5rem 1.7rem 0 -.17rem #ffb84d;
+  background: #ffff00;
+  box-shadow: 1.7rem -1.1rem 0 -.12rem #d8d8d8, 4.5rem 1.7rem 0 -.17rem #ffff00;
 }
 .project-preview-artillery {
   background:
