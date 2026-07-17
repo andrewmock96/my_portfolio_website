@@ -15,12 +15,14 @@
   const TAU = Math.PI * 2;
   const EARTH_RADIUS = 6371;
   const MU = 398600.44;
-  const TIME_SCALE = 42;
+  const STEP_SECONDS = 48;
+  const FRAME_SECONDS = 1 / 60;
   const keys = new Set();
   let width = 700;
   let height = 500;
   let running = false;
   let lastTime = 0;
+  let frameAccumulator = 0;
   let earthSprite = null;
   let satellites = [];
   let debris = [];
@@ -29,24 +31,28 @@
 
   const ship = { name: "Ship", x: 0, y: 0, vx: 0, vy: 0, angle: 0, radius: 34, alive: true };
   const satelliteSpecs = [
-    ["Sputnik", 7000, 0.18, "#dce5ed"], ["Hubble", 7350, 1.25, "#9fc4db"],
-    ["GPS I", 26560, 2.0, "#8ca8be"], ["GPS II", 26560, 3.05, "#8ca8be"],
-    ["GPS III", 26560, 4.1, "#8ca8be"], ["GPS IV", 26560, 5.12, "#8ca8be"],
-    ["Starlink", 6920, 2.75, "#d8e2ea"], ["Crew Dragon", 6800, 4.9, "#f0f3f6"],
+    ["Sputnik", -36515.09513, 21082, 2.05, 2.68468, "#dce5ed", 4],
+    ["Hubble", 0, -42164, 3.1, 0, "#9fc4db", 10],
+    ["GPS I", 0, 26560, -3.88, 0, "#8ca8be", 12],
+    ["GPS II", 23001.63472, 13280, -1.94, 3.36018, "#8ca8be", 12],
+    ["GPS III", 23001.63472, -13280, 1.94, 3.36018, "#8ca8be", 12],
+    ["GPS IV", 0, -26560, 3.88, 0, "#8ca8be", 12],
+    ["GPS V", -23001.63472, -13280, 1.94, -3.36018, "#8ca8be", 12],
+    ["GPS VI", -23001.63472, 13280, -1.94, -3.36018, "#8ca8be", 12],
+    ["Starlink", 0, -13020, 5.8, 0, "#d8e2ea", 6],
+    ["Crew Dragon", 0, 8000, -7.9, 0, "#f0f3f6", 7],
   ];
 
-  function circularBody(name, orbitRadius, phase, color) {
-    const speed = Math.sqrt(MU / orbitRadius);
-    return { name, x: Math.cos(phase) * orbitRadius, y: Math.sin(phase) * orbitRadius,
-      vx: -Math.sin(phase) * speed, vy: Math.cos(phase) * speed, radius: name.includes("GPS") ? 78 : 60,
-      color, alive: true };
+  function createBody(name, x, y, vx, vy, color, radius) {
+    return { name, x, y, vx, vy, radius, color, angle: 0, alive: true };
   }
 
   function reset() {
-    satellites = satelliteSpecs.map((spec) => circularBody(...spec));
+    satellites = satelliteSpecs.map((spec) => createBody(...spec));
     debris = [];
     projectiles = [];
-    Object.assign(ship, circularBody("Ship", 7200, -0.72, "#b5f44a"), { radius: 44, angle: 2.29 });
+    Object.assign(ship, createBody("Ship", -19000, 12500, 0, -2, "#b5f44a", 10), { angle: 0 });
+    frameAccumulator = 0;
     flash = null;
     updateHud("Orbit stable");
   }
@@ -61,13 +67,16 @@
     earthSprite = createEarthSprite();
   }
 
-  function gravity(body, dt) {
+  function advanceWithGravity(body, dt) {
     const distance = Math.hypot(body.x, body.y);
     const factor = -MU / (distance * distance * distance);
-    body.vx += body.x * factor * dt;
-    body.vy += body.y * factor * dt;
-    body.x += body.vx * dt;
-    body.y += body.vy * dt;
+    const ax = body.x * factor;
+    const ay = body.y * factor;
+    body.x += body.vx * dt + .5 * ax * dt * dt;
+    body.y += body.vy * dt + .5 * ay * dt * dt;
+    body.vx += ax * dt;
+    body.vy += ay * dt;
+    body.angle += .01;
   }
 
   function breakApart(body) {
@@ -78,21 +87,21 @@
       const angle = Math.random() * TAU;
       const impulse = .12 + Math.random() * .42;
       debris.push({ x: body.x, y: body.y, vx: body.vx + Math.cos(angle) * impulse,
-        vy: body.vy + Math.sin(angle) * impulse, radius: 10 + Math.random() * 15,
+        vy: body.vy + Math.sin(angle) * impulse, radius: 2,
         color: "#ffb84d", alive: true, life: 80 + Math.random() * 80 });
     }
   }
 
   function collide(objects) {
     for (const body of objects) {
-      if (body.alive && Math.hypot(body.x, body.y) <= EARTH_RADIUS + body.radius) breakApart(body);
+      if (body.alive && Math.hypot(body.x, body.y) <= EARTH_RADIUS + body.radius * 100) breakApart(body);
     }
     for (let i = 0; i < objects.length; i += 1) {
       const a = objects[i];
       if (!a.alive) continue;
       for (let j = i + 1; j < objects.length; j += 1) {
         const b = objects[j];
-        if (b.alive && Math.hypot(a.x - b.x, a.y - b.y) < a.radius + b.radius) {
+        if (b.alive && Math.hypot(a.x - b.x, a.y - b.y) < (a.radius + b.radius) * 100) {
           breakApart(a); breakApart(b); updateHud("Collision detected"); break;
         }
       }
@@ -101,40 +110,49 @@
 
   function fire() {
     if (!running || !ship.alive) return;
-    const direction = { x: Math.cos(ship.angle), y: Math.sin(ship.angle) };
-    projectiles.push({ x: ship.x + direction.x * 80, y: ship.y + direction.y * 80,
-      vx: ship.vx + direction.x * 2.2, vy: ship.vy + direction.y * 2.2,
-      radius: 20, color: "#ffdf73", alive: true, life: 48 });
+    const direction = { x: Math.sin(ship.angle), y: Math.cos(ship.angle) };
+    projectiles.push({ x: ship.x + direction.x * 1200, y: ship.y + direction.y * 1200,
+      vx: ship.vx + direction.x * 9, vy: ship.vy + direction.y * 9,
+      radius: 1, color: "#ffdf73", alive: true, life: 70 });
     updateHud("Projectile launched");
   }
 
-  function update(dt) {
+  function simulateFrame() {
     if (!running) return;
-    if (keys.has("ArrowLeft") || keys.has("KeyA")) ship.angle -= 2.4 * dt;
-    if (keys.has("ArrowRight") || keys.has("KeyD")) ship.angle += 2.4 * dt;
-    if ((keys.has("ArrowUp") || keys.has("KeyW")) && ship.alive) {
-      ship.vx += Math.cos(ship.angle) * 0.018 * TIME_SCALE * dt;
-      ship.vy += Math.sin(ship.angle) * 0.018 * TIME_SCALE * dt;
+    if (keys.has("ArrowLeft") || keys.has("KeyA")) ship.angle -= .06;
+    if (keys.has("ArrowRight") || keys.has("KeyD")) ship.angle += .06;
+    if ((keys.has("ArrowDown") || keys.has("KeyS")) && ship.alive) {
+      ship.vx += Math.sin(ship.angle) * .002 * STEP_SECONDS;
+      ship.vy += Math.cos(ship.angle) * .002 * STEP_SECONDS;
       updateHud("Thrusters active");
     }
-    const simDt = dt * TIME_SCALE;
-    const moving = [ship, ...satellites, ...debris, ...projectiles];
-    for (const body of moving) {
+    if (ship.alive) {
+      ship.x += ship.vx * STEP_SECONDS;
+      ship.y += ship.vy * STEP_SECONDS;
+    }
+    for (const body of [...satellites, ...debris, ...projectiles]) {
       if (!body.alive) continue;
-      gravity(body, simDt);
-      if (body.life !== undefined) { body.life -= simDt; if (body.life <= 0) body.alive = false; }
+      advanceWithGravity(body, STEP_SECONDS);
+      if (body.life !== undefined) { body.life -= 1; if (body.life <= 0) body.alive = false; }
     }
     collide([ship, ...satellites, ...projectiles]);
     satellites = satellites.filter((body) => body.alive);
     debris = debris.filter((body) => body.alive);
     projectiles = projectiles.filter((body) => body.alive);
-    if (flash) { flash.life -= dt * 1.8; if (flash.life <= 0) flash = null; }
     updateHud();
   }
 
+  function update(dt) {
+    frameAccumulator = Math.min(frameAccumulator + dt, .1);
+    while (frameAccumulator >= FRAME_SECONDS) {
+      simulateFrame();
+      frameAccumulator -= FRAME_SECONDS;
+    }
+    if (flash) { flash.life -= dt * 1.8; if (flash.life <= 0) flash = null; }
+  }
+
   function view() {
-    const farthest = Math.max(11000, ...satellites.map((body) => Math.hypot(body.x, body.y) * 1.12));
-    const scale = Math.min(width, height) * .46 / farthest;
+    const scale = Math.min(width / 700, height / 500) / 100;
     return { scale, cx: width / 2, cy: height / 2 + Math.min(38, height * .04) };
   }
 
@@ -199,11 +217,11 @@
   }
 
   function drawShip(body) {
-    ctx.rotate(-body.angle + Math.PI / 2);
+    ctx.rotate(body.angle);
     polygon([[0, -25], [7, -16], [9, 5], [22, 14], [22, 21], [5, 16], [0, 25], [-5, 16], [-22, 21], [-22, 14], [-9, 5], [-7, -16]], "#23239f", "#ccc", 3);
     ctx.fillStyle = "#bcbcbc";
     ctx.fillRect(-4, -18, 8, 30);
-    if (keys.has("ArrowUp") || keys.has("KeyW")) polygon([[-4, 22], [0, 34], [4, 22]], "#ffff00", null);
+      if (keys.has("ArrowDown") || keys.has("KeyS")) polygon([[-4, 22], [0, 34], [4, 22]], "#ffff00", null);
   }
 
   function drawBody(body, camera) {
@@ -214,13 +232,13 @@
     if (body === ship) {
       drawShip(body);
     } else if (body.name && body.name.includes("GPS")) {
-      ctx.rotate(Math.atan2(body.vy, body.vx)); drawGps();
+      ctx.rotate(body.angle); drawGps();
     } else if (body.name === "Hubble" || body.name === "Starlink") {
-      ctx.rotate(Math.atan2(body.vy, body.vx)); drawHubble();
-    } else if (body.radius <= 25) {
+      ctx.rotate(body.angle); drawHubble();
+    } else if (!body.name) {
       ctx.fillStyle = body.color; ctx.fillRect(-3, -3, 6, 6);
     } else {
-      ctx.rotate(Math.atan2(body.vy, body.vx));
+      ctx.rotate(body.angle);
       ctx.fillStyle = body.color; ctx.strokeStyle = "#ccc"; ctx.lineWidth = 2;
       ctx.fillRect(-7, -12, 14, 24); ctx.strokeRect(-7, -12, 14, 24);
     }
@@ -255,7 +273,7 @@
   function start() { running = true; menu.classList.add("hidden"); canvas.focus(); updateHud("Orbit stable"); }
   window.addEventListener("resize", resize);
   window.addEventListener("keydown", (event) => {
-    if (["ArrowLeft", "ArrowRight", "ArrowUp", "Space"].includes(event.code)) event.preventDefault();
+    if (["ArrowLeft", "ArrowRight", "ArrowDown", "Space"].includes(event.code)) event.preventDefault();
     if (event.code === "Enter" && !running) start();
     if (event.code === "Space" && !event.repeat) fire();
     if (event.code === "KeyR") reset();
