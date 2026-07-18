@@ -28,8 +28,10 @@
   let debris = [];
   let projectiles = [];
   let flash = null;
+  let fireCooldown = 0;
+  let paused = false;
 
-  const ship = { name: "Ship", x: 0, y: 0, vx: 0, vy: 0, angle: 0, radius: 34, alive: true };
+  const ship = { name: "Ship", x: 0, y: 0, vx: 0, vy: 0, angle: 0, radius: 10, alive: true };
   const satelliteSpecs = [
     ["Sputnik", -36515.09513, 21082, 2.05, 2.68468, "#dce5ed", 4],
     ["Hubble", 0, -42164, 3.1, 0, "#9fc4db", 10],
@@ -51,8 +53,15 @@
     satellites = satelliteSpecs.map((spec) => createBody(...spec));
     debris = [];
     projectiles = [];
-    Object.assign(ship, createBody("Ship", -19000, 12500, 0, -2, "#b5f44a", 10), { angle: 0 });
+    const x = -19000;
+    const y = 12500;
+    const radius = Math.hypot(x, y);
+    const orbitalSpeed = Math.sqrt(MU / radius);
+    Object.assign(ship, createBody("Ship", x, y, -y / radius * orbitalSpeed,
+      x / radius * orbitalSpeed, "#b5f44a", 10), { angle: 2.15 });
     frameAccumulator = 0;
+    fireCooldown = 0;
+    paused = false;
     flash = null;
     updateHud("Orbit stable");
   }
@@ -76,19 +85,21 @@
     body.y += body.vy * dt + .5 * ay * dt * dt;
     body.vx += ax * dt;
     body.vy += ay * dt;
-    body.angle += .01;
+    if (body !== ship) body.angle += .01;
   }
 
   function breakApart(body) {
     if (!body.alive) return;
     body.alive = false;
     flash = { x: body.x, y: body.y, life: 1 };
-    for (let i = 0; i < 7; i += 1) {
+    const count = body.name?.startsWith("GPS") ? 8 : 5;
+    for (let i = 0; i < count; i += 1) {
       const angle = Math.random() * TAU;
       const impulse = .12 + Math.random() * .42;
       debris.push({ x: body.x, y: body.y, vx: body.vx + Math.cos(angle) * impulse,
         vy: body.vy + Math.sin(angle) * impulse, radius: 2,
-        color: "#ffb84d", alive: true, life: 80 + Math.random() * 80 });
+        color: i % 3 ? "#bbb" : "#24249e", alive: true, life: 110 + Math.random() * 90,
+        angle: Math.random() * TAU, spin: (Math.random() - .5) * .08 });
     }
   }
 
@@ -109,16 +120,17 @@
   }
 
   function fire() {
-    if (!running || !ship.alive) return;
+    if (!running || paused || !ship.alive || fireCooldown > 0) return;
     const direction = { x: Math.sin(ship.angle), y: Math.cos(ship.angle) };
     projectiles.push({ x: ship.x + direction.x * 1200, y: ship.y + direction.y * 1200,
       vx: ship.vx + direction.x * 9, vy: ship.vy + direction.y * 9,
       radius: 1, color: "#ffdf73", alive: true, life: 70 });
+    fireCooldown = 7;
     updateHud("Projectile launched");
   }
 
   function simulateFrame() {
-    if (!running) return;
+    if (!running || paused) return;
     if (keys.has("ArrowLeft") || keys.has("KeyA")) ship.angle -= .06;
     if (keys.has("ArrowRight") || keys.has("KeyD")) ship.angle += .06;
     if ((keys.has("ArrowDown") || keys.has("KeyS")) && ship.alive) {
@@ -126,15 +138,13 @@
       ship.vy += Math.cos(ship.angle) * .002 * STEP_SECONDS;
       updateHud("Thrusters active");
     }
-    if (ship.alive) {
-      ship.x += ship.vx * STEP_SECONDS;
-      ship.y += ship.vy * STEP_SECONDS;
-    }
-    for (const body of [...satellites, ...debris, ...projectiles]) {
+    for (const body of [ship, ...satellites, ...debris, ...projectiles]) {
       if (!body.alive) continue;
       advanceWithGravity(body, STEP_SECONDS);
+      if (body.spin) body.angle += body.spin;
       if (body.life !== undefined) { body.life -= 1; if (body.life <= 0) body.alive = false; }
     }
+    fireCooldown = Math.max(0, fireCooldown - 1);
     collide([ship, ...satellites, ...projectiles]);
     satellites = satellites.filter((body) => body.alive);
     debris = debris.filter((body) => body.alive);
@@ -153,7 +163,7 @@
 
   function view() {
     const scale = Math.min(width / 700, height / 500) / 100;
-    return { scale, cx: width / 2, cy: height / 2 + Math.min(38, height * .04) };
+    return { scale, cx: width / 2, cy: height / 2 };
   }
 
   function point(body, camera) { return { x: camera.cx + body.x * camera.scale, y: camera.cy - body.y * camera.scale }; }
@@ -216,6 +226,32 @@
     polygon([[-8, -7], [8, -7], [11, 7], [0, 12], [-10, 6]], "#ccc", "#999", 1.5);
   }
 
+  function block(x, y, w, h, fill, stroke = null) {
+    ctx.fillStyle = fill; ctx.fillRect(x, y, w, h);
+    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; ctx.strokeRect(x, y, w, h); }
+  }
+
+  function drawSputnik() {
+    block(-5, -5, 10, 10, "#ffff00", "#eee");
+    ctx.strokeStyle = "#ddd"; ctx.lineWidth = 2;
+    for (const a of [0, Math.PI / 2, Math.PI, Math.PI * 1.5]) {
+      ctx.beginPath(); ctx.moveTo(Math.cos(a) * 6, Math.sin(a) * 6);
+      ctx.lineTo(Math.cos(a) * 17, Math.sin(a) * 17); ctx.stroke();
+    }
+    block(-2, -18, 4, 7, "#ddd"); block(-2, 11, 4, 7, "#ddd");
+  }
+
+  function drawStarlink() {
+    block(-7, -10, 14, 20, "#bbb", "#eee");
+    block(7, -5, 25, 10, "#24249e", "#aaa");
+    ctx.strokeStyle = "#777"; ctx.beginPath(); ctx.moveTo(15, -5); ctx.lineTo(15, 5); ctx.moveTo(23, -5); ctx.lineTo(23, 5); ctx.stroke();
+  }
+
+  function drawCrew() {
+    polygon([[-8,-13],[8,-13],[11,-3],[8,10],[0,15],[-8,10],[-11,-3]], "#ddd", "#888", 2);
+    block(-20, 3, 12, 7, "#24249e", "#aaa"); block(8, 3, 12, 7, "#24249e", "#aaa");
+  }
+
   function drawShip(body) {
     ctx.rotate(body.angle);
     polygon([[0, -25], [7, -16], [9, 5], [22, 14], [22, 21], [5, 16], [0, 25], [-5, 16], [-22, 21], [-22, 14], [-9, 5], [-7, -16]], "#23239f", "#ccc", 3);
@@ -233,10 +269,16 @@
       drawShip(body);
     } else if (body.name && body.name.includes("GPS")) {
       ctx.rotate(body.angle); drawGps();
-    } else if (body.name === "Hubble" || body.name === "Starlink") {
+    } else if (body.name === "Hubble") {
       ctx.rotate(body.angle); drawHubble();
+    } else if (body.name === "Sputnik") {
+      ctx.rotate(body.angle); drawSputnik();
+    } else if (body.name === "Starlink") {
+      ctx.rotate(body.angle); drawStarlink();
+    } else if (body.name === "Crew Dragon") {
+      ctx.rotate(body.angle); drawCrew();
     } else if (!body.name) {
-      ctx.fillStyle = body.color; ctx.fillRect(-3, -3, 6, 6);
+      ctx.rotate(body.angle || 0); block(-3, -2, 7, 5, body.color, "#777");
     } else {
       ctx.rotate(body.angle);
       ctx.fillStyle = body.color; ctx.strokeStyle = "#ccc"; ctx.lineWidth = 2;
@@ -253,7 +295,7 @@
     ctx.drawImage(earthSprite, camera.cx - earthRadius, camera.cy - earthRadius, earthRadius * 2, earthRadius * 2);
     for (const body of [...satellites, ...debris, ...projectiles]) drawBody(body, camera);
     drawBody(ship, camera);
-    if (flash) { const p = point(flash, camera); ctx.beginPath(); ctx.arc(p.x, p.y, (1 - flash.life) * 28 + 5, 0, TAU); ctx.strokeStyle = `rgba(255,184,77,${flash.life})`; ctx.lineWidth = 3; ctx.stroke(); }
+    if (flash) { const p = point(flash, camera); ctx.fillStyle = `rgba(255,220,80,${flash.life})`; for (let i=0;i<10;i+=1) { const a=i/10*TAU; ctx.fillRect(p.x+Math.cos(a)*(18-flash.life*12),p.y+Math.sin(a)*(18-flash.life*12),3,3); } }
   }
 
   function updateHud(message) {
@@ -277,10 +319,13 @@
     if (event.code === "Enter" && !running) start();
     if (event.code === "Space" && !event.repeat) fire();
     if (event.code === "KeyR") reset();
+    if (event.code === "KeyP" && running) { paused = !paused; updateHud(paused ? "Simulation paused" : "Orbit stable"); }
     keys.add(event.code);
   });
   window.addEventListener("keyup", (event) => keys.delete(event.code));
   window.addEventListener("blur", () => keys.clear());
   startButton.addEventListener("click", start);
-  resize(); reset(); requestAnimationFrame(frame);
+  resize(); reset();
+  if (new URLSearchParams(window.location.search).has("autostart")) start();
+  requestAnimationFrame(frame);
 }());
