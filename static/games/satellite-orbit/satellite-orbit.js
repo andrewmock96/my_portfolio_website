@@ -141,9 +141,9 @@
 
   function simulateFrame() {
     if (!running || paused) return;
-    if (keys.has("ArrowLeft")) ship.angle -= .06;
-    if (keys.has("ArrowRight")) ship.angle += .06;
-    if (keys.has("ArrowDown") && ship.alive) {
+    if (keys.has("ArrowLeft") || keys.has("KeyA")) ship.angle -= .06;
+    if (keys.has("ArrowRight") || keys.has("KeyD")) ship.angle += .06;
+    if ((keys.has("ArrowDown") || keys.has("KeyW")) && ship.alive) {
       ship.vx += Math.sin(ship.angle) * .002 * STEP_SECONDS;
       ship.vy += Math.cos(ship.angle) * .002 * STEP_SECONDS;
       updateHud("Thrusters active");
@@ -293,7 +293,7 @@
 
   function drawShip(body) {
     polygon([[-3,-9],[-12,-12],[-14,-12],[-13,-7],[-8,-2],[-6,3],[-4,11],[-4,14],[-3,16],[-1,18],[1,18],[3,16],[4,14],[4,11],[6,3],[8,-2],[13,-7],[14,-12],[12,-12],[3,-9]], "#c4c4c4", null);
-    if (keys.has("ArrowDown")) polygon([[-3,-9],[0,-22],[3,-9]], "#f00", null);
+    if (keys.has("ArrowDown") || keys.has("KeyW")) polygon([[-3,-9],[0,-22],[3,-9]], "#f00", null);
     [[[-5,-8],[-12,-11],[-11,-7],[-5,-2]],[[5,-8],[12,-11],[11,-7],[5,-2]],[[0,-13],[-3,11],[-1,15],[1,15]],[[0,-13],[3,11],[1,15],[-1,15]]].forEach(p=>sourceQuad(p,"#40409c"));
   }
 
@@ -355,7 +355,7 @@
   function start() { running = true; menu.classList.add("hidden"); canvas.focus(); updateHud("Orbit stable"); }
   window.addEventListener("resize", resize);
   window.addEventListener("keydown", (event) => {
-    if (["ArrowLeft", "ArrowRight", "ArrowDown", "Space"].includes(event.code)) event.preventDefault();
+    if (["ArrowLeft", "ArrowRight", "ArrowDown", "KeyA", "KeyD", "KeyW", "Space"].includes(event.code)) event.preventDefault();
     if (event.code === "Enter" && !running) start();
     if (event.code === "KeyR") reset();
     if (event.code === "KeyP" && running) { paused = !paused; updateHud(paused ? "Simulation paused" : "Orbit stable"); }
