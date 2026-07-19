@@ -293,7 +293,13 @@
 
   function drawShip(body) {
     polygon([[-3,-9],[-12,-12],[-14,-12],[-13,-7],[-8,-2],[-6,3],[-4,11],[-4,14],[-3,16],[-1,18],[1,18],[3,16],[4,14],[4,11],[6,3],[8,-2],[13,-7],[14,-12],[12,-12],[3,-9]], "#c4c4c4", null);
-    if (keys.has("ArrowDown") || keys.has("KeyW")) polygon([[-3,-9],[0,-22],[3,-9]], "#f00", null);
+    if (keys.has("ArrowDown") || keys.has("KeyW")) {
+      for (let i = 0; i < 2; i += 1) {
+        const flameX = -5 + Math.random() * 10;
+        const flameY = -25 + Math.random() * 12;
+        polygon([[-3,-9],[flameX,flameY],[3,-9]], "#f00", null);
+      }
+    }
     [[[-5,-8],[-12,-11],[-11,-7],[-5,-2]],[[5,-8],[12,-11],[11,-7],[5,-2]],[[0,-13],[-3,11],[-1,15],[1,15]],[[0,-13],[3,11],[1,15],[-1,15]]].forEach(p=>sourceQuad(p,"#40409c"));
   }
 
@@ -317,7 +323,7 @@
     } else if (body.kind === "part") {
       drawPart(body.partType);
     } else if (body.kind === "bullet") {
-      block(-1, -1, 2, 2, "#fff");
+      sourceQuad([[1,1],[-1,1],[-1,-1],[1,-1]], "#fff");
     } else if (!body.name) {
       block(-4, -1, 8, 2, "#c4c4c4");
     } else {

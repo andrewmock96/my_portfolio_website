@@ -1,0 +1,344 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 125" role="img" aria-labelledby="title desc">
+<title id="title">Granite Gold logo with highlighted A and M</title>
+<desc id="desc">The approved mountain and lake logo with gold ridge lines revealing an A and M in the mountain geometry</desc>
+<style>
+[fill="#365b78"]{fill:#505743!important}[stroke="#365b78"]{stroke:#505743!important}
+[fill="#294b65"]{fill:#494438!important}[stroke="#294b65"]{stroke:#494438!important}
+[fill="#315570"]{fill:#484f3e!important}[stroke="#315570"]{stroke:#484f3e!important}
+[fill="#385e79"]{fill:#5b5745!important}[stroke="#385e79"]{stroke:#5b5745!important}
+[fill="#426984"]{fill:#69644f!important}[stroke="#426984"]{stroke:#69644f!important}
+[fill="#426a86"]{fill:#5d5847!important}[stroke="#426a86"]{stroke:#5d5847!important}
+[fill="#4b718d"]{fill:#756d58!important}[stroke="#4b718d"]{stroke:#756d58!important}
+[fill="#4f7894"]{fill:#6e6651!important}[stroke="#4f7894"]{stroke:#6e6651!important}
+[fill="#557d99"]{fill:#786f58!important}[stroke="#557d99"]{stroke:#786f58!important}
+[fill="#567e99"]{fill:#7b7259!important}[stroke="#567e99"]{stroke:#7b7259!important}
+[fill="#638ba7"]{fill:#86795f!important}[stroke="#638ba7"]{stroke:#86795f!important}
+[fill="#c9dfec"]{fill:#d2d5cf!important}[stroke="#c9dfec"]{stroke:#d2d5cf!important}
+[fill="#d4e5ef"]{fill:#dedfd8!important}[stroke="#d4e5ef"]{stroke:#dedfd8!important}
+[fill="#d9e8f1"]{fill:#e4e3da!important}[stroke="#d9e8f1"]{stroke:#e4e3da!important}
+</style>
+<defs>
+<linearGradient id="s3" x1="0" y1="0" x2="0" y2="1">
+<stop stop-color="#4f7fa8"/>
+<stop offset=".38" stop-color="#80acc9"/>
+<stop offset=".7" stop-color="#bad7e6"/>
+<stop offset="1" stop-color="#eef2ed"/>
+</linearGradient>
+<radialGradient id="daylightGlow">
+<stop stop-color="#fff8cf" stop-opacity=".95"/>
+<stop offset=".3" stop-color="#ffe08a" stop-opacity=".65"/>
+<stop offset="1" stop-color="#fff2c7" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="letterGold" gradientUnits="userSpaceOnUse" x1="62" y1="30" x2="142" y2="103">
+<stop stop-color="#c9832f"/>
+<stop offset=".24" stop-color="#e7a33e"/>
+<stop offset=".46" stop-color="#ffd46f"/>
+<stop offset=".62" stop-color="#f0b34f"/>
+<stop offset=".82" stop-color="#d39431"/>
+<stop offset="1" stop-color="#f6c45d"/>
+</linearGradient>
+<g id="pine">
+<path d="M0-8-.7-6.8h.42L-1.3-5.45h.68L-1.95-3.9h.92L-2.65-2.15h1.28L-3-.65h2.7V0h.6v-.65H3L1.42-2.15h1.2L1.02-3.9h.94L.6-5.45h.7L.28-6.8H.7Z"/>
+<path d="M0-8 .7-6.8H.28L1.3-5.45H.6l1.36 1.55h-.94l1.6 1.75h-1.2L3-.65H.3V0H0Z" fill="#173d2c" opacity=".14"/>
+</g>
+<g id="shrub">
+<path d="M-2.4 0C-2.5-1-1.9-1.7-1-1.6-.7-2.5.7-2.5 1-1.6 1.9-1.7 2.5-1 2.4 0Z"/>
+</g>
+<g id="bear">
+<!-- far legs establish the grounded diagonal stride -->
+<path d="M-2.62-1.46Q-2.46-.38-2.08.58L-1.68.94-1.62 1.08-.48 1.08-.72.8-1.12.5-1.06-1.22ZM.38-1.5Q.24-.34.48.58L.82.96.86 1.08H1.94L1.7.8 1.28.48 1.62-1.26Z" fill="#33271f"/>
+<!-- near legs are also complete before the torso is laid over them -->
+<path d="M-3.5-1.38Q-3.34-.72-3.08-.2-2.96.2-3.2.56L-3.44.78-3.16.92-2.8.72-2.5.32-2.08.04-1.48-1.12-2.42-1.56Q-3.04-1.72-3.5-1.38Z"/>
+<path d="M-3.08-.24Q-2.98.18-3.2.56L-3 .7-2.66.34-2.54.06Z" fill="#30261f" opacity=".52"/>
+<path d="M-3.3.78-3.48.92Q-3.6 1.03-3.4 1.1H-2.96Q-2.78 1-2.72.72L-3.04.9Z" fill="#3d2d24"/>
+<path d="M-.08-1.54.22-.3Q.3.18.62.54L.98.76 1.3.66 1.04.42.86.04 1.46-1.3Z"/>
+<path d="M.28-.28Q.32.18.62.54L.86.7 1.04.44.8.14.64-.26Z" fill="#30261f" opacity=".52"/>
+<path d="M1.02.7 1.38.82 1.7.74Q1.86.76 1.78.9L1.57.98H1.12Q.98.9 1.02.7Z" fill="#352820"/>
+<path d="M-2.77-.2Q-2.94.2-3.08.55M.43-.16Q.5.2.72.5" fill="none" stroke="#2b221d" stroke-width=".11" stroke-linecap="round" opacity=".55"/>
+<path d="M-3.38 1.01h.24M-1.46 1.01h.28M.92 1.02h.28M1.5.9h.22" fill="none" stroke="#1f1a17" stroke-width=".065" stroke-linecap="round" opacity=".7"/>
+<!-- long-backed grizzly silhouette with a pronounced shoulder hump -->
+<path d="M-3.62-1.08Q-3.66-1.72-3.08-2.28-2.38-2.78-1.46-2.78-.5-2.8.34-2.98 1.02-3.12 1.56-2.86 1.96-2.68 2.2-2.32L2.48-2.16Q2.84-2.08 3.08-1.84 3.28-1.66 3.34-1.42L3.66-1.32Q4-1.2 4-.94 3.96-.7 3.6-.62L3.12-.64Q2.66-.64 2.24-.52L1.82-.4Q1.42-.36 1.08-.5.58-.7.12-.64-.38-.56-.84-.66-1.38-.78-1.9-.58-2.32-.42-2.72-.52-3.12-.62-3.38-.82-3.56-.94-3.62-1.08Z"/>
+<path d="M-2.72-.52Q-2.3-.42-1.9-.58-1.38-.78-.84-.66-.38-.56.12-.64.58-.7 1.08-.5 1.42-.36 1.82-.4" fill="none" stroke="#2d241f" stroke-width=".1" stroke-linecap="round" opacity=".2"/>
+<!-- hip and shoulder planes overlap the torso so the legs grow out of the body -->
+<path d="M-3.34-1.58Q-2.86-2.1-2.16-1.98-1.62-1.88-1.5-1.4-1.42-.98-1.64-.58Q-2.02-.66-2.42-.5L-2.78-.5Q-3.06-.66-3.18-.94L-3.34-1.58Z" fill="#463329" opacity=".62"/>
+<path d="M.54-2.18Q1.22-2.5 1.76-2.14 2.08-1.84 1.96-1.18L1.82-.4Q1.42-.36 1.08-.5.72-.64.38-.64L.3-1.26Q.28-1.84.54-2.18Z" fill="#3b2d25" opacity=".58"/>
+<path d="M-2.86-1.5Q-2.38-1.8-1.82-1.46M.8-1.92Q1.28-2.1 1.62-1.72" fill="none" stroke="#76533e" stroke-width=".13" stroke-linecap="round" opacity=".3"/>
+<path d="M.68-2.86Q1.26-3.08 1.76-2.86 2.16-2.7 2.4-2.4L2.98-2.04 2.48-1.9 1.82-2.14 1.08-2.32Z" fill="#2f251f" opacity=".14"/>
+<path d="M1.34-2.8Q1.98-2.74 2.58-2.2L2.98-1.9 2.62-1.25Q2.2-.76 1.56-.52L1.2-1.46Z" fill="#2c231e" opacity=".14"/>
+<!-- restrained fur planes -->
+<path d="M-2.85-2.2Q-2.1-2.66-1.25-2.56L-1.8-2.3-2.35-1.82-3-1.46Z" fill="#8a674c" opacity=".24"/>
+<path d="M-.82-2.7Q-.02-2.92.58-3.06 1.18-3.12 1.72-2.72L1.9-2.4Q1.02-2.6.14-2.4-.52-2.2-1.22-1.9Z" fill="#8f6a4c" opacity=".3"/>
+<path d="M-.2-2.22Q.52-2.48 1.28-2.36" fill="none" stroke="#a17a58" stroke-width=".14" stroke-linecap="round" opacity=".25"/>
+<!-- neck, ear and low grizzly head -->
+<path d="M1.72-2.4Q1.94-2.88 2.4-2.82 2.72-2.78 2.82-2.42L2.46-2.04Z" fill="#3d2d24"/>
+<circle cx="2.12" cy="-2.69" r=".23" fill="#4a3529"/>
+<circle cx="2.12" cy="-2.69" r=".105" fill="#8a674c"/>
+<!-- broad forehead, cheek and compact grizzly muzzle -->
+<path d="M1.98-2.22Q2.5-2.58 3.02-2.2 3.3-1.98 3.38-1.62L3.7-1.48Q4-1.34 4.02-1.1 4-.82 3.66-.7L3.18-.72Q2.74-.7 2.4-.94L2.06-1.34Z" fill="#594233"/>
+<path d="M3.06-1.64Q3.48-1.72 3.84-1.48 4.04-1.34 4.02-1.1L3.7-.84 3.2-.86 2.94-1.16Z" fill="#806149"/>
+<path d="M2.1-2.24Q2.46-2.42 2.82-2.18L2.48-1.9 2.16-1.48Z" fill="#6d503c" opacity=".45"/>
+<path d="M3.18-.86Q3.46-.7 3.72-.84 3.52-.6 3.16-.66Z" fill="#46342a"/>
+<ellipse cx="3.93" cy="-1.14" rx=".14" ry=".105" fill="#151817"/><circle cx="2.72" cy="-1.94" r=".085" fill="#121615"/>
+<path d="M3.98-1.08Q3.68-.92 3.32-.94" fill="none" stroke="#2a211c" stroke-width=".1" stroke-linecap="round"/>
+<!-- short grizzly tail -->
+<path d="M-3.35-1.48Q-3.7-1.74-3.42-2.02L-3.08-1.72Z" fill="#433128"/>
+</g>
+<g id="cubBear">
+<use href="#bear" transform="translate(0 .28) scale(.98 .88)"/>
+</g>
+<g id="bird"><path d="M-2 0Q-1-1.25 0-.15 1-1.25 2 0Q1-.65 0 .35-1-.65-2 0Z"/></g>
+<g id="eagle"><path d="M-4 0Q-2.4-2.1-.25-.55L0-1.45.35-.55Q2.5-2.1 4 0 2.2-.85.55.45L.1 1.25-.35.45Q-2.2-.85-4 0Z"/></g>
+<g id="baldEagle">
+<path d="M-.35-.25Q-2.2-1.85-4.1-1.65-5.15-1.55-6-.75L-5.05-.72-5.8-.15-4.75-.35-5.2.3-4.05-.18-4.25.55-3.15-.22Q-1.8-.05-.65.65Z" fill="#263943"/>
+<path d="M.25-.35Q2-1.9 3.95-1.65 5.1-1.5 6-.65L5-.68 5.75-.08 4.7-.3 5.15.35 4-.12 4.2.6 3.05-.18Q1.75.02.65.68Z" fill="#263943"/>
+<path d="M-3.9-1.05Q-2.15-1.15-.6.05M3.8-1.02Q2.1-1.12.65.08" fill="none" stroke="#405865" stroke-width=".28" stroke-linecap="round" opacity=".8"/>
+<!-- layered white tail fan sits behind the dark body -->
+<path d="M-.72-.02Q-1.35.12-2.48.08L-2.08.38-2.72.52-2.02.7-2.5.96-1.68.88-1.88 1.18-.98.82-.38.42Z" fill="#f4f2e9"/>
+<path d="M-2.08.38-1.18.4M-2.02.7-1.08.58M-1.68.88-.9.68" fill="none" stroke="#c9d3d5" stroke-width=".1" stroke-linecap="round"/>
+<path d="M-1.15-.42Q.15-1 1.55-.42L2.2.02Q1.55.65.25.76-.75.72-1.35.2Z" fill="#2b3f48"/>
+<!-- feathered ankles and compact feet folded into the belly -->
+<path d="M-.3.38-.06.52-.2.68-.5.59ZM.28.4.54.54.38.7.08.61Z" fill="#263943"/>
+<path d="M-.27.56Q-.08.58-.13.72L-.32.78-.5.69-.38.61ZM.31.58Q.5.6.45.74L.26.8.08.71.2.63Z" fill="#d99d32"/>
+<path d="M-.31.74Q-.48.82-.4.92M-.2.75Q-.04.8-.12.92M.27.76Q.1.84.18.94M.38.77Q.54.82.46.94" fill="none" stroke="#9d651d" stroke-width=".085" stroke-linecap="round"/>
+<path d="M.82-.52Q1.8-1.12 2.78-.46L2.35.12 1.28.35.55-.08Z" fill="#f4f2e9"/>
+<path d="M2.65-.42 3.42-.18 2.55.05Z" fill="#d99d32"/><circle cx="2.05" cy="-.54" r=".08" fill="#171b1c"/>
+</g>
+<pattern id="densePinesFar" width="4" height="9" patternUnits="userSpaceOnUse">
+<use href="#pine" transform="translate(1 9) scale(.48)" fill="#96a087"/>
+<use href="#pine" transform="translate(3.1 9) scale(.4)" fill="#829478"/>
+</pattern>
+<pattern id="densePinesMid" width="5" height="9" patternUnits="userSpaceOnUse">
+<use href="#pine" transform="translate(.8 9) scale(.62)" fill="#607b5e"/>
+<use href="#pine" transform="translate(3.3 9) scale(.54)" fill="#4f7054"/>
+</pattern>
+<clipPath id="b3">
+<circle cx="90" cy="59" r="50"/>
+</clipPath>
+<mask id="amA-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="125">
+<rect width="180" height="125" fill="white"/>
+<path d="M10 92 68 53 82 61 82 100 10 100Z" fill="black"/>
+<path d="M117 52 130 42 170 100 117 100Z" fill="black"/>
+</mask>
+<mask id="amM-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="125">
+<rect width="180" height="125" fill="white"/>
+<path d="M18 104 49 68 76 104v10H18Z" fill="black"/>
+</mask>
+</defs>
+<circle cx="90" cy="59" r="56" fill="#465564"/>
+<!-- cartoony granite-and-gold compass bezel -->
+<circle cx="90" cy="59" r="55.15" fill="none" stroke="#d89b38" stroke-width=".55"/>
+<circle cx="90" cy="59" r="53.6" fill="none" stroke="#334451" stroke-width="1.15" opacity=".9"/>
+<circle cx="90" cy="59" r="52.75" fill="none" stroke="#e2aa48" stroke-width=".34"/>
+<circle cx="90" cy="59" r="54.35" fill="none" stroke="#c9913a" stroke-width=".46" stroke-dasharray=".32 1.35" stroke-linecap="round" opacity=".9"/>
+<circle cx="90" cy="59" r="51.75" fill="none" stroke="#94a2aa" stroke-width=".28" stroke-dasharray=".2 1.75" stroke-linecap="round" opacity=".58"/>
+<circle cx="90" cy="59" r="50" fill="url(#s3)"/>
+<g clip-path="url(#b3)">
+<path d="M35 25c15-6 31-5 47 1 10 4 21 4 32 1" fill="none" stroke="#eef6fa" stroke-width="4" stroke-linecap="round" opacity=".28"/>
+<path d="M48 37c14-4 28-3 41 2 11 4 22 4 34 0" fill="none" stroke="#d9e8f1" stroke-width="3" stroke-linecap="round" opacity=".3"/>
+<path d="M70 17c10-2 20-1 30 2" fill="none" stroke="#f6f8f8" stroke-width="2" stroke-linecap="round" opacity=".22"/>
+<circle cx="129" cy="29" r="19" fill="url(#daylightGlow)"/>
+<circle cx="129" cy="29" r="7" fill="#f7cf66"/>
+<g fill="#263f4b">
+<use href="#eagle" transform="translate(49 25) scale(1.05)"/>
+<use href="#bird" transform="translate(111 20) scale(.55)" opacity=".72"/><use href="#bird" transform="translate(117 23) scale(.4)" opacity=".58"/><use href="#bird" transform="translate(122 18) scale(.34)" opacity=".48"/><use href="#bird" transform="translate(127 22) scale(.46)" opacity=".65"/><use href="#bird" transform="translate(132 16) scale(.38)" opacity=".55"/><use href="#bird" transform="translate(136 20) scale(.3)" opacity=".48"/><use href="#bird" transform="translate(140 14) scale(.42)" opacity=".6"/>
+<use href="#bird" transform="translate(105 15) scale(.3)" opacity=".5"/><use href="#bird" transform="translate(113 12) scale(.26)" opacity=".42"/><use href="#bird" transform="translate(121 27) scale(.31)" opacity=".48"/><use href="#bird" transform="translate(130 25) scale(.27)" opacity=".44"/><use href="#bird" transform="translate(138 10) scale(.24)" opacity=".4"/>
+</g>
+<path d="M10 92 34 73 51 76 68 53 82 61 101 24 117 52 130 42 164 92Z" fill="#365b78"/>
+<path d="M54.6 70.2 68 53 82 61 101 24 117 52 130 42 151 73 144 68 139 72 134 64 130 75 126 67 121 70 116 60 111 63 106 58 102 66 97 56 93 64 88 67 84 63 79 69 75 66 71 75 68 68 64 73 60 74Z" fill="#f6f8f8"/>
+<path d="M101 24 117 52 112 49 108 58 104 52 101 45Z" fill="#c9dfec"/>
+<path d="M130 42 151 73 143 68 138 73 134 62 130 58Z" fill="#d4e5ef"/>
+<path d="M68 53 82 61 77 65 73 69 70 62Z" fill="#d9e8f1"/>
+<path d="M102 35 106 46 104 54 101 49 99 42Z" fill="#365b78"/>
+<path d="M132 51 137 59 134 67 131 61 129 55Z" fill="#365b78"/>
+<path d="M66 59 71 65 69 70 67 66Z" fill="#365b78"/>
+<path d="M54 77 67 70 62 86 57 88Z" fill="#294b65"/>
+<path d="M74 79 86 67 82 83 77 88Z" fill="#4b718d"/>
+<path d="M108 69 118 62 114 77 109 81Z" fill="#294b65"/>
+<g fill="none" stroke="url(#letterGold)" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="6">
+<path d="M80.5 64 101 24 117 52"/>
+<path d="M89.5 46.15 112.5 43.85"/>
+</g>
+<g>
+<path d="M54 77 68 53 83 61.5 101 55 112 67 103 82 96 76 79 69 75 66 71 75 68 68 64 73 60 74Z" fill="#365b78" stroke="#365b78" stroke-width=".45" stroke-linejoin="round"/>
+<path d="M79 69 83 61.5 101 55 95 66 90 73 87 78Z" fill="#315570" stroke="#315570" stroke-width=".45" stroke-linejoin="round"/>
+<path d="M101 55 112 67 103 82 95 66Z" fill="#426984" stroke="#426984" stroke-width=".45" stroke-linejoin="round"/>
+<path d="M95 66 103 82 94 76 90 73Z" fill="#385e79"/>
+<path d="M54.6 70.2 68 53 83 61.5 101 55 97 58 93 59 90 62 86 61.5 82 65 79 65 75 66 71 75 68 68 64 73 60 74Z" fill="#f6f8f8" stroke="#f6f8f8" stroke-width=".45" stroke-linejoin="round"/>
+<path d="M68 53 83 61.5 101 55 97 58 93 59 90 62 86 61.5 82 65 79 65 77 65 73 69 70 62Z" fill="#d9e8f1" stroke="#d9e8f1" stroke-width=".45" stroke-linejoin="round"/>
+<path d="M83 61.5 101 55 97 58 93 59 90 62 86 61.5 82 65Z" fill="#c9dfec"/>
+<path d="M66 59 71 65 69 70 67 66Z" fill="#365b78"/>
+<path d="M117 52 130 42 151 73 144 68 139 72 134 64 130 75 126 67 121 70 116 60Z" fill="#f6f8f8"/>
+<path d="M130 42 151 73 143 68 138 73 134 62 130 58Z" fill="#d4e5ef"/>
+<path d="M132 51 137 59 134 67 131 61 129 55Z" fill="#365b78"/>
+</g>
+<path d="M18 104 49 68 76 104v4H18Z" fill="#567e99"/>
+<path d="M18 104 49 68 45 91 61 104Z" fill="#426a86"/>
+<path d="M39.55 79 49 68 58 80 55 78 52 83 49 76 46 81 41.3 77Z" fill="#f6f8f8"/>
+<path d="M49 68 58 80 55 78 52 83 50 76Z" fill="#d4e5ef"/>
+<path d="M45 102 65 74 82 102v6H45Z" fill="#638ba7"/>
+<path d="M68 102 101 55 118 80 135 54 160 102v6H68Z" fill="#638ba7"/>
+<path d="M45 102 65 74 62 92 73 102Z" fill="#4f7894"/>
+<path d="M68 102 101 55 96 87 111 102Z" fill="#4b718d"/>
+<path d="M118 80 135 54 131 87 146 102 118 102Z" fill="#557d99"/>
+<path d="M59 83 65 74 72 85 69 83 67 88 64 82 62 85Z" fill="#f6f8f8"/>
+<path d="M65 74 72 85 69 83 67 88 66 81Z" fill="#d9e8f1"/>
+<path d="M62 85 65 80 66 88 64 92Z" fill="#4f7894"/>
+<path d="M87 75 101 55 114 74 109 72 105 78 101 73 96 80 93 74 90 79Z" fill="#f6f8f8"/>
+<path d="M101 55 114 74 109 72 105 78 102 69Z" fill="#d9e8f1"/>
+<path d="M96 65 100 59 101 70 98 76 96 70Z" fill="#4b718d"/>
+<path d="M125 69 135 54 148 79 143 77 139 82 135 75 132 82 129 75Z" fill="#f6f8f8"/>
+<path d="M135 54 148 79 143 77 139 82 136 70Z" fill="#d4e5ef"/>
+<path d="M139 65 142 73 139 80 137 72Z" fill="#557d99"/>
+<use href="#baldEagle" transform="translate(80 53) rotate(-4) scale(1.75)"/>
+<g fill="none" stroke="url(#letterGold)" stroke-width="2.4" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="6">
+<path d="M68 102 101 55 118 80 135 54 160 102"/>
+</g>
+<g>
+<path d="M45 102 65 74 82 102v6H45Z" fill="#638ba7"/>
+<path d="M45 102 65 74 62 92 73 102Z" fill="#4f7894"/>
+<path d="M59 83 65 74 72 85 69 83 67 88 64 82 62 85Z" fill="#f6f8f8"/>
+<path d="M65 74 72 85 69 83 67 88 66 81Z" fill="#d9e8f1"/>
+<path d="M62 85 65 80 66 88 64 92Z" fill="#4f7894"/>
+</g>
+<path d="M0 94 18 93.5 35 95 52 94 69 95.5 86 94.5 104 95.2 121 94 139 95 158 93.8 180 94.5V101H0Z" fill="#9a8266"/>
+<path d="M0 96 18 94 35 95 28 98 12 99 0 98Z" fill="#b09a7b"/>
+<path d="M28 98 52 94 69 95.5 62 99 43 100Z" fill="#806b55"/>
+<path d="M62 99 86 94.5 104 95.2 96 98.5 77 100Z" fill="#b39c7d"/>
+<path d="M96 98.5 121 94 139 95 130 99 111 100Z" fill="#796650"/>
+<path d="M130 99 158 93.8 180 94.5V99L158 98Z" fill="#ad9576"/>
+<path d="M0 99h180v29H0Z" fill="#4b91a8"/>
+<path d="M0 99h180v1.5H0Z" fill="#397b93" opacity=".78"/>
+<path d="M37 99 37 92 47 84 58 89 68 90 80 95 90 94 101 95 112 90 124 85 134 89 143 82 143 99Z" fill="#6f8068" opacity=".82"/>
+<path d="M37 99 37 95 49 88 60 92 71 93 82 97 94 96 106 93 117 88 128 91 143 86 143 99Z" fill="#4f7056" opacity=".9"/>
+<path d="M37 95 49 88 60 92 53 94 44 97Z" fill="#5f7d60"/>
+<path d="M94 96 106 93 117 88 112 95 103 98Z" fill="#42664d"/>
+<path d="M117 88 128 91 143 86 136 94 124 97Z" fill="#5c795c"/>
+<g fill="#71856b" opacity=".82">
+<use href="#pine" transform="translate(38.5 91.5) scale(.42)"/><use href="#pine" transform="translate(42.5 88.5) scale(.48)"/><use href="#pine" transform="translate(46.5 84.8) scale(.44)"/><use href="#pine" transform="translate(50.5 86.2) scale(.5)"/><use href="#pine" transform="translate(54.5 88) scale(.43)"/><use href="#pine" transform="translate(59 89) scale(.49)"/><use href="#pine" transform="translate(63.5 89.8) scale(.42)"/><use href="#pine" transform="translate(68 91) scale(.47)"/><use href="#pine" transform="translate(72.5 93) scale(.41)"/>
+<use href="#pine" transform="translate(108 92) scale(.43)"/><use href="#pine" transform="translate(112.5 89.5) scale(.49)"/><use href="#pine" transform="translate(117 87.5) scale(.42)"/><use href="#pine" transform="translate(121.5 85.5) scale(.5)"/><use href="#pine" transform="translate(126 86.5) scale(.44)"/><use href="#pine" transform="translate(130.5 88) scale(.48)"/><use href="#pine" transform="translate(135 87) scale(.42)"/><use href="#pine" transform="translate(139 84.5) scale(.49)"/><use href="#pine" transform="translate(142 82.5) scale(.43)"/>
+</g>
+<g fill="#456b50" opacity=".94">
+<use href="#pine" transform="translate(40.5 92.5) scale(.55)"/><use href="#pine" transform="translate(45 87.5) scale(.62)"/><use href="#pine" transform="translate(49.5 86) scale(.56)"/><use href="#pine" transform="translate(54 88.5) scale(.64)"/><use href="#pine" transform="translate(59 90) scale(.57)"/><use href="#pine" transform="translate(64 91) scale(.63)"/><use href="#pine" transform="translate(69 92.5) scale(.55)"/>
+<use href="#pine" transform="translate(111 91) scale(.57)"/><use href="#pine" transform="translate(116 88.5) scale(.64)"/><use href="#pine" transform="translate(121 86.5) scale(.56)"/><use href="#pine" transform="translate(126 87.5) scale(.63)"/><use href="#pine" transform="translate(131 89) scale(.57)"/><use href="#pine" transform="translate(136 87) scale(.65)"/><use href="#pine" transform="translate(140.5 84) scale(.56)"/>
+</g>
+<g fill="#365d45" opacity=".9">
+<use href="#pine" transform="translate(39 92) scale(.48)"/><use href="#pine" transform="translate(42.5 89.5) scale(.56)"/><use href="#pine" transform="translate(46 86) scale(.5)"/><use href="#pine" transform="translate(48 85) scale(.58)"/><use href="#pine" transform="translate(52 87.2) scale(.52)"/><use href="#pine" transform="translate(56.5 89) scale(.59)"/><use href="#pine" transform="translate(61.5 90.2) scale(.51)"/><use href="#pine" transform="translate(66.5 91.5) scale(.57)"/><use href="#pine" transform="translate(71.5 93) scale(.49)"/><use href="#pine" transform="translate(76 95) scale(.55)"/>
+<use href="#pine" transform="translate(106 93) scale(.5)"/><use href="#pine" transform="translate(110 91) scale(.58)"/><use href="#pine" transform="translate(114 89) scale(.51)"/><use href="#pine" transform="translate(118.5 87) scale(.6)"/><use href="#pine" transform="translate(123.5 86) scale(.52)"/><use href="#pine" transform="translate(128.5 88) scale(.58)"/><use href="#pine" transform="translate(133.5 88.5) scale(.5)"/><use href="#pine" transform="translate(137.5 86) scale(.59)"/><use href="#pine" transform="translate(141.5 83) scale(.51)"/>
+</g>
+<g transform="translate(0 -1.6)">
+<g fill="#829478" opacity="0">
+<use href="#pine" transform="translate(42 96) scale(.42)"/><use href="#pine" transform="translate(48 95) scale(.48)"/><use href="#pine" transform="translate(54 94) scale(.43)"/><use href="#pine" transform="translate(60 93) scale(.5)"/><use href="#pine" transform="translate(66 92) scale(.44)"/><use href="#pine" transform="translate(72 91) scale(.51)"/><use href="#pine" transform="translate(78 90.5) scale(.45)"/><use href="#pine" transform="translate(84 90) scale(.52)"/><use href="#pine" transform="translate(90 90) scale(.46)"/><use href="#pine" transform="translate(96 90.5) scale(.5)"/><use href="#pine" transform="translate(102 91) scale(.44)"/><use href="#pine" transform="translate(108 92) scale(.52)"/><use href="#pine" transform="translate(114 93) scale(.45)"/><use href="#pine" transform="translate(120 94) scale(.5)"/><use href="#pine" transform="translate(126 95) scale(.43)"/><use href="#pine" transform="translate(132 96) scale(.48)"/><use href="#pine" transform="translate(138 96.5) scale(.41)"/>
+</g>
+<g fill="#6f8668" opacity="0">
+<use href="#pine" transform="translate(44 97) scale(.55)"/><use href="#pine" transform="translate(49 96) scale(.61)"/><use href="#pine" transform="translate(54 95) scale(.54)"/><use href="#pine" transform="translate(59 94) scale(.63)"/><use href="#pine" transform="translate(64 93) scale(.56)"/><use href="#pine" transform="translate(69 92.5) scale(.62)"/><use href="#pine" transform="translate(74 92) scale(.55)"/><use href="#pine" transform="translate(79 91.5) scale(.64)"/><use href="#pine" transform="translate(84 91) scale(.57)"/><use href="#pine" transform="translate(89 91) scale(.63)"/><use href="#pine" transform="translate(94 91.5) scale(.55)"/><use href="#pine" transform="translate(99 92) scale(.64)"/><use href="#pine" transform="translate(104 92.5) scale(.56)"/><use href="#pine" transform="translate(109 93) scale(.62)"/><use href="#pine" transform="translate(114 94) scale(.55)"/><use href="#pine" transform="translate(119 95) scale(.64)"/><use href="#pine" transform="translate(124 96) scale(.57)"/><use href="#pine" transform="translate(129 97) scale(.61)"/><use href="#pine" transform="translate(134 97) scale(.54)"/>
+</g>
+<g fill="#55745a" opacity="0">
+<use href="#pine" transform="translate(46 98) scale(.68)"/><use href="#pine" transform="translate(52 97) scale(.75)"/><use href="#pine" transform="translate(58 96) scale(.67)"/><use href="#pine" transform="translate(64 95) scale(.77)"/><use href="#pine" transform="translate(70 94) scale(.69)"/><use href="#pine" transform="translate(76 93.5) scale(.76)"/><use href="#pine" transform="translate(82 93) scale(.68)"/><use href="#pine" transform="translate(88 93) scale(.78)"/><use href="#pine" transform="translate(94 93.5) scale(.7)"/><use href="#pine" transform="translate(100 94) scale(.76)"/><use href="#pine" transform="translate(106 95) scale(.68)"/><use href="#pine" transform="translate(112 96) scale(.78)"/><use href="#pine" transform="translate(118 97) scale(.69)"/><use href="#pine" transform="translate(124 98) scale(.75)"/><use href="#pine" transform="translate(130 98) scale(.67)"/>
+</g>
+<g fill="#819477" opacity=".66">
+<use href="#pine" transform="translate(40 90) scale(.48)"/><use href="#pine" transform="translate(45 90.8) scale(.54)"/><use href="#pine" transform="translate(50 91.5) scale(.46)"/><use href="#pine" transform="translate(55 92.3) scale(.56)"/><use href="#pine" transform="translate(60 93) scale(.48)"/><use href="#pine" transform="translate(65 94) scale(.55)"/><use href="#pine" transform="translate(70 95) scale(.47)"/><use href="#pine" transform="translate(75 96) scale(.53)"/><use href="#pine" transform="translate(80 97) scale(.46)"/><use href="#pine" transform="translate(85 97.5) scale(.52)"/><use href="#pine" transform="translate(90 97.8) scale(.45)"/><use href="#pine" transform="translate(95 97.5) scale(.54)"/><use href="#pine" transform="translate(100 97) scale(.47)"/><use href="#pine" transform="translate(105 96) scale(.55)"/><use href="#pine" transform="translate(110 95) scale(.46)"/><use href="#pine" transform="translate(115 94) scale(.54)"/><use href="#pine" transform="translate(120 93) scale(.48)"/><use href="#pine" transform="translate(125 92.3) scale(.56)"/><use href="#pine" transform="translate(130 91.5) scale(.47)"/><use href="#pine" transform="translate(135 90.8) scale(.54)"/><use href="#pine" transform="translate(140 90) scale(.46)"/>
+</g>
+<g fill="#5f7c60" opacity=".8">
+<use href="#pine" transform="translate(42 92) scale(.62)"/><use href="#pine" transform="translate(47 92.5) scale(.7)"/><use href="#pine" transform="translate(52 93) scale(.6)"/><use href="#pine" transform="translate(57 94) scale(.72)"/><use href="#pine" transform="translate(62 95) scale(.63)"/><use href="#pine" transform="translate(67 96) scale(.7)"/><use href="#pine" transform="translate(72 97) scale(.61)"/><use href="#pine" transform="translate(77 97.5) scale(.69)"/><use href="#pine" transform="translate(82 98) scale(.62)"/><use href="#pine" transform="translate(87 98) scale(.7)"/><use href="#pine" transform="translate(93 98) scale(.62)"/><use href="#pine" transform="translate(98 98) scale(.71)"/><use href="#pine" transform="translate(103 97.5) scale(.63)"/><use href="#pine" transform="translate(108 97) scale(.7)"/><use href="#pine" transform="translate(113 96) scale(.61)"/><use href="#pine" transform="translate(118 95) scale(.72)"/><use href="#pine" transform="translate(123 94) scale(.62)"/><use href="#pine" transform="translate(128 93) scale(.7)"/><use href="#pine" transform="translate(133 92.5) scale(.61)"/><use href="#pine" transform="translate(138 92) scale(.68)"/>
+</g>
+<g fill="#3f684c" opacity=".9">
+<use href="#pine" transform="translate(44 94) scale(.78)"/><use href="#pine" transform="translate(50 94.5) scale(.86)"/><use href="#pine" transform="translate(56 95) scale(.76)"/><use href="#pine" transform="translate(62 96) scale(.88)"/><use href="#pine" transform="translate(68 97) scale(.78)"/><use href="#pine" transform="translate(74 98) scale(.86)"/><use href="#pine" transform="translate(80 98.2) scale(.77)"/><use href="#pine" transform="translate(86 98.3) scale(.88)"/><use href="#pine" transform="translate(92 98.3) scale(.79)"/><use href="#pine" transform="translate(98 98.2) scale(.86)"/><use href="#pine" transform="translate(104 98) scale(.78)"/><use href="#pine" transform="translate(110 97) scale(.88)"/><use href="#pine" transform="translate(116 96) scale(.76)"/><use href="#pine" transform="translate(122 95) scale(.87)"/><use href="#pine" transform="translate(128 94.5) scale(.78)"/><use href="#pine" transform="translate(134 94) scale(.84)"/>
+</g>
+<g fill="#a4ad94" opacity=".5">
+<use href="#pine" transform="translate(39 98) scale(.38)"/><use href="#pine" transform="translate(41.5 98) scale(.46)"/><use href="#pine" transform="translate(44 98) scale(.4)"/><use href="#pine" transform="translate(46.5 98) scale(.49)"/><use href="#pine" transform="translate(49 98) scale(.37)"/><use href="#pine" transform="translate(51.5 98) scale(.45)"/><use href="#pine" transform="translate(54 98) scale(.41)"/><use href="#pine" transform="translate(56.5 98) scale(.5)"/><use href="#pine" transform="translate(59 98) scale(.39)"/><use href="#pine" transform="translate(61.5 98) scale(.47)"/><use href="#pine" transform="translate(64 98) scale(.4)"/><use href="#pine" transform="translate(66.5 98) scale(.48)"/><use href="#pine" transform="translate(69 98) scale(.38)"/><use href="#pine" transform="translate(71.5 98) scale(.46)"/><use href="#pine" transform="translate(74 98) scale(.42)"/><use href="#pine" transform="translate(76.5 98) scale(.5)"/><use href="#pine" transform="translate(79 98) scale(.39)"/><use href="#pine" transform="translate(81.5 98) scale(.47)"/><use href="#pine" transform="translate(84 98) scale(.41)"/><use href="#pine" transform="translate(86.5 98) scale(.49)"/><use href="#pine" transform="translate(89 98) scale(.38)"/><use href="#pine" transform="translate(91.5 98) scale(.46)"/><use href="#pine" transform="translate(94 98) scale(.4)"/><use href="#pine" transform="translate(96.5 98) scale(.5)"/><use href="#pine" transform="translate(99 98) scale(.39)"/><use href="#pine" transform="translate(101.5 98) scale(.47)"/><use href="#pine" transform="translate(104 98) scale(.41)"/><use href="#pine" transform="translate(106.5 98) scale(.49)"/><use href="#pine" transform="translate(109 98) scale(.38)"/><use href="#pine" transform="translate(111.5 98) scale(.46)"/><use href="#pine" transform="translate(114 98) scale(.4)"/><use href="#pine" transform="translate(116.5 98) scale(.5)"/><use href="#pine" transform="translate(119 98) scale(.39)"/><use href="#pine" transform="translate(121.5 98) scale(.47)"/><use href="#pine" transform="translate(124 98) scale(.41)"/><use href="#pine" transform="translate(126.5 98) scale(.49)"/><use href="#pine" transform="translate(129 98) scale(.38)"/><use href="#pine" transform="translate(131.5 98) scale(.46)"/><use href="#pine" transform="translate(134 98) scale(.4)"/><use href="#pine" transform="translate(136.5 98) scale(.48)"/><use href="#pine" transform="translate(139 98) scale(.39)"/><use href="#pine" transform="translate(141.5 98) scale(.45)"/>
+</g>
+<g fill="#9aa58a" opacity=".55">
+<use href="#pine" transform="translate(40 98) scale(.42)"/><use href="#pine" transform="translate(44 98) scale(.5)"/><use href="#pine" transform="translate(48 98) scale(.44)"/><use href="#pine" transform="translate(52 98) scale(.53)"/><use href="#pine" transform="translate(56 98) scale(.41)"/><use href="#pine" transform="translate(60 98) scale(.49)"/><use href="#pine" transform="translate(64 98) scale(.45)"/><use href="#pine" transform="translate(68 98) scale(.54)"/><use href="#pine" transform="translate(72 98) scale(.43)"/><use href="#pine" transform="translate(76 98) scale(.5)"/><use href="#pine" transform="translate(80 98) scale(.42)"/><use href="#pine" transform="translate(84 98) scale(.52)"/><use href="#pine" transform="translate(88 98) scale(.46)"/><use href="#pine" transform="translate(92 98) scale(.54)"/><use href="#pine" transform="translate(96 98) scale(.43)"/><use href="#pine" transform="translate(100 98) scale(.51)"/><use href="#pine" transform="translate(104 98) scale(.45)"/><use href="#pine" transform="translate(108 98) scale(.53)"/><use href="#pine" transform="translate(112 98) scale(.42)"/><use href="#pine" transform="translate(116 98) scale(.5)"/><use href="#pine" transform="translate(120 98) scale(.44)"/><use href="#pine" transform="translate(124 98) scale(.52)"/><use href="#pine" transform="translate(128 98) scale(.43)"/><use href="#pine" transform="translate(132 98) scale(.49)"/><use href="#pine" transform="translate(136 98) scale(.41)"/><use href="#pine" transform="translate(140 98) scale(.47)"/>
+</g>
+<g fill="#7f9276" opacity=".66">
+<use href="#pine" transform="translate(42 98.5) scale(.54)"/><use href="#pine" transform="translate(47 98.5) scale(.61)"/><use href="#pine" transform="translate(52 98.5) scale(.52)"/><use href="#pine" transform="translate(57 98.5) scale(.63)"/><use href="#pine" transform="translate(62 98.5) scale(.55)"/><use href="#pine" transform="translate(67 98.5) scale(.6)"/><use href="#pine" transform="translate(72 98.5) scale(.53)"/><use href="#pine" transform="translate(77 98.5) scale(.64)"/><use href="#pine" transform="translate(82 98.5) scale(.54)"/><use href="#pine" transform="translate(87 98.5) scale(.61)"/><use href="#pine" transform="translate(92 98.5) scale(.52)"/><use href="#pine" transform="translate(97 98.5) scale(.63)"/><use href="#pine" transform="translate(102 98.5) scale(.55)"/><use href="#pine" transform="translate(107 98.5) scale(.62)"/><use href="#pine" transform="translate(112 98.5) scale(.53)"/><use href="#pine" transform="translate(117 98.5) scale(.64)"/><use href="#pine" transform="translate(122 98.5) scale(.54)"/><use href="#pine" transform="translate(127 98.5) scale(.61)"/><use href="#pine" transform="translate(132 98.5) scale(.52)"/><use href="#pine" transform="translate(137 98.5) scale(.59)"/>
+</g>
+<g fill="#87977c" opacity=".72">
+<use href="#pine" transform="translate(43 98.8) scale(.48)"/><use href="#pine" transform="translate(49 98.8) scale(.55)"/><use href="#pine" transform="translate(55 98.8) scale(.46)"/><use href="#pine" transform="translate(61 98.8) scale(.58)"/><use href="#pine" transform="translate(67 98.8) scale(.5)"/><use href="#pine" transform="translate(73 98.8) scale(.54)"/><use href="#pine" transform="translate(79 98.8) scale(.47)"/><use href="#pine" transform="translate(85 98.8) scale(.57)"/><use href="#pine" transform="translate(91 98.8) scale(.49)"/><use href="#pine" transform="translate(97 98.8) scale(.55)"/><use href="#pine" transform="translate(103 98.8) scale(.47)"/><use href="#pine" transform="translate(109 98.8) scale(.58)"/><use href="#pine" transform="translate(115 98.8) scale(.5)"/><use href="#pine" transform="translate(121 98.8) scale(.54)"/><use href="#pine" transform="translate(127 98.8) scale(.46)"/><use href="#pine" transform="translate(133 98.8) scale(.52)"/>
+</g>
+<g fill="#648065" opacity=".84">
+<use href="#pine" transform="translate(46 99) scale(.62)"/><use href="#pine" transform="translate(53 99) scale(.69)"/><use href="#pine" transform="translate(60 99) scale(.6)"/><use href="#pine" transform="translate(67 99) scale(.72)"/><use href="#pine" transform="translate(74 99) scale(.64)"/><use href="#pine" transform="translate(81 99) scale(.7)"/><use href="#pine" transform="translate(88 99) scale(.61)"/><use href="#pine" transform="translate(95 99) scale(.73)"/><use href="#pine" transform="translate(102 99) scale(.63)"/><use href="#pine" transform="translate(109 99) scale(.69)"/><use href="#pine" transform="translate(116 99) scale(.61)"/><use href="#pine" transform="translate(123 99) scale(.72)"/><use href="#pine" transform="translate(130 99) scale(.64)"/>
+</g>
+<g fill="#456b50" opacity=".94">
+<use href="#pine" transform="translate(49 99.2) scale(.78)"/><use href="#pine" transform="translate(58 99.2) scale(.86)"/><use href="#pine" transform="translate(67 99.2) scale(.75)"/><use href="#pine" transform="translate(76 99.2) scale(.89)"/><use href="#pine" transform="translate(85 99.2) scale(.79)"/><use href="#pine" transform="translate(94 99.2) scale(.86)"/><use href="#pine" transform="translate(103 99.2) scale(.77)"/><use href="#pine" transform="translate(112 99.2) scale(.9)"/><use href="#pine" transform="translate(121 99.2) scale(.8)"/><use href="#pine" transform="translate(130 99.2) scale(.84)"/>
+</g>
+<g fill="#365d45" opacity=".96">
+<use href="#pine" transform="translate(42 99.3) scale(.72)"/><use href="#pine" transform="translate(47 99.3) scale(.82)"/><use href="#pine" transform="translate(53 99.3) scale(.7)"/><use href="#pine" transform="translate(59 99.3) scale(.8)"/><use href="#pine" transform="translate(65 99.3) scale(.74)"/><use href="#pine" transform="translate(71 99.3) scale(.84)"/><use href="#pine" transform="translate(77 99.3) scale(.71)"/><use href="#pine" transform="translate(83 99.3) scale(.81)"/><use href="#pine" transform="translate(89 99.3) scale(.75)"/><use href="#pine" transform="translate(95 99.3) scale(.85)"/><use href="#pine" transform="translate(101 99.3) scale(.73)"/><use href="#pine" transform="translate(107 99.3) scale(.82)"/><use href="#pine" transform="translate(113 99.3) scale(.76)"/><use href="#pine" transform="translate(119 99.3) scale(.86)"/><use href="#pine" transform="translate(125 99.3) scale(.72)"/><use href="#pine" transform="translate(131 99.3) scale(.81)"/><use href="#pine" transform="translate(137 99.3) scale(.7)"/>
+</g>
+<g fill="#284f3b">
+<use href="#pine" transform="translate(53 99.4) scale(.96)"/><use href="#pine" transform="translate(64 99.4) scale(1.08)"/><use href="#pine" transform="translate(75 99.4) scale(.92)"/><use href="#pine" transform="translate(86 99.4) scale(1.04)"/><use href="#pine" transform="translate(97 99.4) scale(.95)"/><use href="#pine" transform="translate(108 99.4) scale(1.1)"/><use href="#pine" transform="translate(119 99.4) scale(.94)"/><use href="#pine" transform="translate(130 99.4) scale(1.02)"/>
+</g>
+</g>
+<g opacity=".96">
+<g fill="#55745a">
+<use href="#pine" transform="translate(124 87) scale(.66)"/><use href="#pine" transform="translate(127.5 85.5) scale(.72)"/><use href="#pine" transform="translate(131 85) scale(.64)"/><use href="#pine" transform="translate(134.5 83.5) scale(.74)"/><use href="#pine" transform="translate(138 82.5) scale(.66)"/><use href="#pine" transform="translate(141 81.5) scale(.72)"/><use href="#pine" transform="translate(144 80.5) scale(.63)"/>
+</g>
+<g fill="#31563f">
+<use href="#pine" transform="translate(126 89) scale(.75)"/><use href="#pine" transform="translate(130 87.5) scale(.82)"/><use href="#pine" transform="translate(134 86) scale(.73)"/><use href="#pine" transform="translate(138 84.5) scale(.84)"/><use href="#pine" transform="translate(142 83) scale(.75)"/><use href="#pine" transform="translate(145 82) scale(.8)"/>
+</g>
+</g>
+<g opacity=".96">
+<g fill="#55745a">
+<use href="#pine" transform="translate(35 80.5) scale(.63)"/><use href="#pine" transform="translate(38 81.5) scale(.72)"/><use href="#pine" transform="translate(41 82.5) scale(.66)"/><use href="#pine" transform="translate(44.5 83.5) scale(.74)"/><use href="#pine" transform="translate(48 85) scale(.64)"/><use href="#pine" transform="translate(51.5 85.5) scale(.72)"/><use href="#pine" transform="translate(55 87) scale(.66)"/>
+</g>
+<g fill="#31563f">
+<use href="#pine" transform="translate(34 82) scale(.8)"/><use href="#pine" transform="translate(37 83) scale(.75)"/><use href="#pine" transform="translate(41 84.5) scale(.84)"/><use href="#pine" transform="translate(45 86) scale(.73)"/><use href="#pine" transform="translate(49 87.5) scale(.82)"/><use href="#pine" transform="translate(53 89) scale(.75)"/>
+</g>
+</g>
+<g fill="#284f3b">
+<use href="#pine" transform="translate(130 84.5) scale(.88)"/><use href="#pine" transform="translate(133.5 82.5) scale(.96)"/><use href="#pine" transform="translate(137 80.5) scale(.86)"/><use href="#pine" transform="translate(140 79) scale(.92)"/>
+</g>
+<g fill="#31563f">
+<use href="#pine" transform="translate(111 96) scale(.78)"/><use href="#pine" transform="translate(115 95.5) scale(.86)"/><use href="#pine" transform="translate(119 94.5) scale(.8)"/><use href="#pine" transform="translate(123 93.5) scale(.88)"/><use href="#pine" transform="translate(127 92) scale(.79)"/><use href="#pine" transform="translate(130 90.5) scale(.84)"/>
+</g>
+<g fill="#3d654a">
+<use href="#pine" transform="translate(113 91) scale(.68)"/><use href="#pine" transform="translate(116 89) scale(.76)"/><use href="#pine" transform="translate(119 87.5) scale(.7)"/><use href="#pine" transform="translate(122 86) scale(.79)"/><use href="#pine" transform="translate(125 85) scale(.72)"/><use href="#pine" transform="translate(128 87) scale(.77)"/><use href="#pine" transform="translate(131 88.5) scale(.69)"/>
+</g>
+<g fill="#365d45">
+<use href="#pine" transform="translate(112.5 94) scale(.8)"/><use href="#pine" transform="translate(116 93) scale(.88)"/><use href="#pine" transform="translate(119.5 92.5) scale(.82)"/><use href="#pine" transform="translate(123 92) scale(.9)"/><use href="#pine" transform="translate(126.5 92.5) scale(.8)"/>
+</g>
+<path d="M34 99 34 97.7 37 97.3 40 97.8 44 97.1 48 97.6 52 97.2 56 97.8 60 97.1 64 97.5 68 97.2 72 97.7 76 97.3 80 97.8 84 97.1 88 97.5 92 97.2 96 97.8 100 97.1 104 97.6 108 97.2 112 97.7 116 97.1 120 97.5 124 97.2 128 97.8 132 97.1 136 97.6 140 97.2 144 97.7 144 99Z" fill="#274b38"/>
+<g fill="#456b50">
+<use href="#shrub" transform="translate(41 98.5) scale(.65)"/><use href="#shrub" transform="translate(50 98.3) scale(.82)"/><use href="#shrub" transform="translate(60 98.6) scale(.6)"/><use href="#shrub" transform="translate(70 98.3) scale(.76)"/><use href="#shrub" transform="translate(80 98.5) scale(.64)"/><use href="#shrub" transform="translate(91 98.2) scale(.8)"/><use href="#shrub" transform="translate(102 98.5) scale(.62)"/><use href="#shrub" transform="translate(113 98.2) scale(.78)"/><use href="#shrub" transform="translate(124 98.5) scale(.66)"/><use href="#shrub" transform="translate(135 98.3) scale(.74)"/>
+</g>
+<g fill="#62805e" opacity=".9">
+<use href="#shrub" transform="translate(45 98) scale(.5)"/><use href="#shrub" transform="translate(55 98.1) scale(.58)"/><use href="#shrub" transform="translate(65 98) scale(.48)"/><use href="#shrub" transform="translate(75 98.1) scale(.56)"/><use href="#shrub" transform="translate(86 97.9) scale(.5)"/><use href="#shrub" transform="translate(97 98.1) scale(.58)"/><use href="#shrub" transform="translate(108 97.9) scale(.49)"/><use href="#shrub" transform="translate(119 98.1) scale(.57)"/><use href="#shrub" transform="translate(130 98) scale(.5)"/><use href="#shrub" transform="translate(140 98.1) scale(.55)"/>
+</g>
+<g fill="#345a43">
+<use href="#shrub" transform="translate(38.5 98.4) scale(.52)"/><use href="#shrub" transform="translate(43 98.15) scale(.7)"/><use href="#shrub" transform="translate(47 98.45) scale(.46)"/><use href="#shrub" transform="translate(52.5 98.05) scale(.64)"/><use href="#shrub" transform="translate(58 98.35) scale(.55)"/><use href="#shrub" transform="translate(63.5 98.1) scale(.72)"/><use href="#shrub" transform="translate(69 98.4) scale(.47)"/><use href="#shrub" transform="translate(74.5 98.05) scale(.62)"/><use href="#shrub" transform="translate(80.5 98.3) scale(.54)"/><use href="#shrub" transform="translate(87 98) scale(.68)"/><use href="#shrub" transform="translate(93 98.35) scale(.48)"/><use href="#shrub" transform="translate(99.5 98.05) scale(.65)"/><use href="#shrub" transform="translate(106 98.4) scale(.52)"/><use href="#shrub" transform="translate(112.5 98) scale(.7)"/><use href="#shrub" transform="translate(119 98.35) scale(.46)"/><use href="#shrub" transform="translate(125.5 98.05) scale(.63)"/><use href="#shrub" transform="translate(132 98.4) scale(.54)"/><use href="#shrub" transform="translate(138 98.1) scale(.67)"/><use href="#shrub" transform="translate(142 98.35) scale(.48)"/>
+</g>
+<path d="M34 98.6C52 98 69 98.7 86 98.35S119 98.75 144 98.2L144 100.4C124 100 105 100.5 86 100.1S53 100.5 34 100.15Z" fill="#92795d"/>
+<path d="M35 98.55C54 98.15 70 98.75 87 98.4S120 98.8 143 98.3" fill="none" stroke="#c0a684" stroke-width=".65" stroke-linecap="round"/>
+<path d="M45 99.15 51 98.7 56 99.25 50 99.6Z" fill="#725f4d"/><path d="M66 99.35 72 98.85 78 99.4 71 99.8Z" fill="#aa9170"/><path d="M96 99.3 102 98.75 108 99.35 101 99.75Z" fill="#745f4b"/><path d="M120 99.15 126 98.65 132 99.2 125 99.65Z" fill="#ad9473"/>
+<g transform="translate(89.7 95.25)" fill="#3c493d"><path d="M0 0Q-.55-.5-1-.08-.45.08 0 .32Z"/><path d="M0 0Q.55-.5 1-.08.45.08 0 .32Z"/><path d="M0-.05v.58" fill="none" stroke="#3c493d" stroke-width=".14" stroke-linecap="round"/></g>
+<g fill="#5d4938" opacity=".4"><ellipse cx="113" cy="100" rx="4.8" ry=".34"/><ellipse cx="102.5" cy="99.95" rx="2.8" ry=".25"/><ellipse cx="94.5" cy="99.95" rx="2.5" ry=".24"/></g>
+<g fill="#4e392b">
+<use href="#bear" transform="translate(113 98.32) scale(1.42)"/>
+</g>
+<g fill="#634a36">
+<use href="#cubBear" transform="translate(102.5 98.68) rotate(7) scale(.9)"/><use href="#cubBear" transform="translate(94.5 98.18) rotate(14) scale(.82)"/>
+</g>
+<path d="M55 101 68 103 80 106 90 102 101 109 112 103 123 106 134 102 151 101Z" fill="#356f89" opacity=".62"/>
+<path d="M67 101 79 104 87 102 98 107 92 105 85 108 77 104Z" fill="#8fc9d4" opacity=".64"/>
+<path d="M103 101 112 103 122 102 133 106 126 104 119 108 112 104Z" fill="#79b9c7" opacity=".5"/>
+<path d="M59 102c19-1.3 37-1.1 54 .15" fill="none" stroke="#c1ebed" stroke-width="1.15" stroke-linecap="round"/>
+<path d="M66 103.5c15-.9 29-.75 43 .15" fill="none" stroke="#83cbd4" stroke-width="1.05" stroke-linecap="round"/>
+<path d="M78 107c8-.5 17-.4 25 .1" fill="none" stroke="#b2e2e6" stroke-width=".85" stroke-linecap="round"/>
+</g>
+<!-- four faceted cardinal pointers: narrow at the bezel, broad beyond it -->
+<g stroke-linejoin="miter">
+<path d="M88.55 9.2 91.45 9.2 92.15 1.4 87.85 1.4Z" fill="#f0b34f" stroke="#d39431" stroke-width=".28"/>
+<path d="M88.55 108.8 91.45 108.8 92.15 116.6 87.85 116.6Z" fill="#f0b34f" stroke="#d39431" stroke-width=".28"/>
+<path d="M40.2 57.55 40.2 60.45 32.8 61.15 32.8 56.85Z" fill="#f0b34f" stroke="#d39431" stroke-width=".28"/>
+<path d="M139.8 57.55 139.8 60.45 147.2 61.15 147.2 56.85Z" fill="#f0b34f" stroke="#d39431" stroke-width=".28"/>
+</g>
+<!-- restrained cardinal labels and major tick marks -->
+<g fill="#334451" font-family="Georgia,serif" font-size="2.45" font-weight="700" text-anchor="middle">
+<text x="90" y="7.25">N</text><text x="90" y="112.55">S</text>
+<text x="37.2" y="59.9">W</text><text x="142.8" y="59.9">E</text>
+</g>
+<g fill="none" stroke="#e5ad4b" stroke-width=".42" stroke-linecap="round" opacity=".9">
+<path d="M62.8 12.1 63.8 13.85M116.2 13.85 117.2 12.1M42.7 32.4 44.45 33.4M135.55 33.4 137.3 32.4"/>
+<path d="M42.7 85.6 44.45 84.6M135.55 84.6 137.3 85.6M62.8 105.9 63.8 104.15M116.2 104.15 117.2 105.9"/>
+</g>
+</svg>

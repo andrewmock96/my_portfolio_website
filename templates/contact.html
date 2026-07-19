@@ -2,17 +2,43 @@
 
 {% block title %}Contact {{ site_title }}{% endblock %}
 {% block description %}Get in touch with Andrew about a project, idea, or opportunity.{% endblock %}
-{% block main_class %}page{% endblock %}
+{% block main_class %}page contact-page{% endblock %}
 
 {% block content %}
-<section class="contact-panel">
-    <p class="eyebrow">Let's talk</p>
-    <h1>Have a project, opportunity, or interesting problem?</h1>
-    <p>I'd enjoy hearing about it. Email is the best way to reach me, and you can also find more of my work and background below.</p>
-    <a class="button primary" href="mailto:{{ site_email }}">Email {{ site_email }} <span aria-hidden="true">&rarr;</span></a>
-    <div class="contact-links">
-        <a href="{{ github_url }}"><span>GitHub</span><span aria-hidden="true">&nearr;</span></a>
-        <a href="{{ linkedin_url }}"><span>LinkedIn</span><span aria-hidden="true">&nearr;</span></a>
+<section class="contact-hero">
+    <div>
+        <h1>Want to reach out?</h1>
     </div>
+    <div class="contact-intro">
+        <p>Have a project to build, a problem to solve, or an opportunity to discuss? I'd love to hear about it. Calling or texting is the best way to reach me.</p>
+        <dl class="contact-details">
+            <div><dt>Available for</dt><dd>Software engineering roles, freelance projects, and collaboration</dd></div>
+            <div><dt>Time zone</dt><dd>Mountain Time</dd></div>
+        </dl>
+    </div>
+</section>
+
+<section class="contact-methods" aria-label="Ways to contact Andrew">
+    <div class="contact-method contact-method-featured">
+        <span class="contact-method-label">Call or text</span>
+        <strong>{{ site_phone }}</strong>
+        <span class="contact-method-actions">
+            <a href="sms:{{ site_phone_href }}">Text <span aria-hidden="true">&rarr;</span></a>
+            <a href="tel:{{ site_phone_href }}">Call <span aria-hidden="true">&rarr;</span></a>
+        </span>
+    </div>
+    <a class="contact-method" href="mailto:{{ site_email }}">
+        <span class="contact-method-label">Email</span>
+        <strong>{{ site_email }}</strong>
+        <span>Open in your email app <span aria-hidden="true">&rarr;</span></span>
+    </a>
+    <a class="contact-method contact-method-compact" href="{{ github_url }}" target="_blank" rel="noreferrer">
+        <span class="contact-method-label">GitHub</span>
+        <span>Open profile <span aria-hidden="true">&nearr;</span></span>
+    </a>
+    <a class="contact-method contact-method-compact" href="{{ linkedin_url }}" target="_blank" rel="noreferrer">
+        <span class="contact-method-label">LinkedIn</span>
+        <span>Open profile <span aria-hidden="true">&nearr;</span></span>
+    </a>
 </section>
 {% endblock %}

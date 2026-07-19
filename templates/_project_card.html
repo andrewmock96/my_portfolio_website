@@ -1,8 +1,8 @@
 <article
     class="project-card{% if project.play_endpoint %} project-card-playable{% endif %}"
     {% if project.play_endpoint %}
-        ondblclick="window.location.href='{{ url_for(project.play_endpoint) }}'"
-        title="Double-click to play {{ project.title }}"
+        onclick="if (!event.target.closest('a')) window.location.href='{{ url_for(project.play_endpoint) }}'"
+        title="Click to play {{ project.title }}"
     {% endif %}>
     <div class="project-preview project-preview-{{ project.slug }}{% if project.preview_image %} has-image{% endif %}" aria-hidden="true">
         {% if project.preview_image %}
@@ -13,21 +13,14 @@
             <span></span>
         {% endif %}
     </div>
-    <div class="project-topline">
-        <span>{{ "%02d" | format(project_number) }}</span>
-        <span>{{ project.status }}</span>
-    </div>
     <div>
         <h3>{{ project.title }}</h3>
         <p>{{ project.description }}</p>
     </div>
     <div class="project-links">
         {% if project.play_endpoint %}
-            <a href="{{ url_for(project.play_endpoint) }}">Play <span aria-hidden="true">&rarr;</span></a>
+            <a href="{{ url_for(project.play_endpoint) }}">Play</a>
         {% endif %}
-        <a href="{{ url_for('static', filename=project.download_filename) }}" download>Download Windows build <span aria-hidden="true">&darr;</span></a>
-        {% if project.source_url %}
-            <a href="{{ project.source_url }}">Source <span aria-hidden="true">&nearr;</span></a>
-        {% endif %}
+        <a href="{{ url_for('static', filename=project.download_filename) }}" download>Download</a>
     </div>
 </article>

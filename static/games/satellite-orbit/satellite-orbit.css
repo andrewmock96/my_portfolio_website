@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+
 :root {
   color-scheme: dark;
   --panel: rgba(12, 25, 42, 0.82);
@@ -20,12 +22,39 @@ button { font: inherit; cursor: pointer; }
 .legend span { display: inline-block; width: .55rem; height: .55rem; margin: 0 .25rem 0 .6rem; border-radius: 50%; }
 .legend span:first-child { margin-left: 0; }
 .ship-dot { background: var(--accent); }.satellite-dot { background: #b7cdde; }.debris-dot { background: #ffb84d; }
-.menu-overlay { position: absolute; inset: 0; display: grid; place-items: center; padding: 1.5rem; background: rgba(0, 0, 0, .58); }
+.menu-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(20, 28, 35, .34);
+}
+.menu-overlay::before { position: absolute; inset: 0; z-index: 1; background: rgba(20, 28, 35, .34); content: ""; }
+.menu-background { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .menu-overlay.hidden { display: none; }
-.menu-panel { width: min(100%, 35rem); padding: 2rem; border: 1px solid var(--border); border-radius: .55rem; background: rgba(12, 25, 42, .88); backdrop-filter: blur(12px); box-shadow: 0 1rem 3rem rgba(0, 0, 0, .45); }
-.eyebrow { margin: 0 0 .7rem; color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.menu-panel h1 { margin: 0 0 .8rem; font-size: clamp(2.3rem, 6vw, 4rem); line-height: 1.02; }
-.menu-panel > p:not(.eyebrow) { max-width: 30rem; margin: 0 0 1.5rem; color: #d4dce7; line-height: 1.6; }
-.menu-panel button { padding: .85rem 1.2rem; border: 1px solid rgba(255,255,255,.12); border-radius: .4rem; background: #60768c; color: white; font-weight: 700; }
-.menu-panel button:hover { background: #718ba3; }
+.menu-panel {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 36rem);
+  padding: clamp(1.6rem, 4vw, 2.5rem);
+  border: 1px solid #c7d3de;
+  border-radius: .75rem;
+  background: rgba(243, 244, 242, .92);
+  color: #2c3740;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1.4rem 3.5rem rgba(20, 28, 35, .22);
+}
+.menu-panel h1 { margin: 0 0 1rem; color: #2c3740; font: 600 clamp(2.3rem, 6vw, 4.25rem)/1.04 "Lora", Georgia, serif; }
+.menu-panel > p { max-width: 31rem; margin: 0 0 1.7rem; color: #55677d; font: 1rem/1.7 Georgia, "Times New Roman", serif; }
+.menu-panel button {
+  padding: .8rem 1.15rem;
+  border: 1px solid #55677d;
+  border-radius: 999px;
+  background: #55677d;
+  color: #f8fbfd;
+  font-weight: 700;
+  box-shadow: 0 .8rem 2rem rgba(85, 103, 125, .18);
+}
+.menu-panel button:hover { background: #4a5a6d; }
 @media (max-width: 600px) { .hud { top: .65rem; left: .65rem; right: .65rem; gap: .4rem; }.hud-panel { min-width: calc(50% - .25rem); padding: .5rem .6rem; }.legend { display: none; }.menu-panel { padding: 1.4rem; } }

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Satellite Orbit Simulator</title>
+  <link rel="icon" href="../../images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="satellite-orbit.css">
 </head>
 <body>
@@ -17,8 +18,8 @@
     </div>
     <div class="legend" aria-hidden="true">A D / ← → rotate&nbsp;&nbsp; W / ↓ thrust&nbsp;&nbsp; Space fire&nbsp;&nbsp; P pause&nbsp;&nbsp; R reset</div>
     <div class="menu-overlay" id="menuOverlay">
+      <img class="menu-background" src="../../images/satellite-orbit-preview.webp" alt="">
       <div class="menu-panel">
-        <p class="eyebrow">Playable browser port</p>
         <h1>Satellite Orbit Simulator</h1>
         <p>Pilot a spacecraft through the same crowded orbit as the original C++ build. Every object follows orbital gravity, and collisions create persistent moving debris.</p>
         <button id="startButton" type="button">Start simulation</button>

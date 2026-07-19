@@ -11,6 +11,7 @@
     <meta property="og:description" content="{{ self.description() | striptags }}">
     <meta property="og:url" content="{{ canonical_url }}">
     <meta name="theme-color" content="#0b0d10">
+    <link rel="icon" href="{{ url_for('static', filename='images/portfolio-logo.svg') }}" type="image/svg+xml">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}{% endblock %}
 </head>

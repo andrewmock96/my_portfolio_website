@@ -106,6 +106,8 @@ def inject_site_metadata():
             "SITE_DESCRIPTION", "Personal projects, experiments, and notes from Andrew."
         ),
         "site_email": os.environ.get("SITE_EMAIL", "hello@example.com"),
+        "site_phone": "(620) 803-8630",
+        "site_phone_href": "+16208038630",
         "github_url": os.environ.get("GITHUB_URL", "#"),
         "linkedin_url": os.environ.get("LINKEDIN_URL", "#"),
         "site_url": site_url(),
@@ -118,7 +120,7 @@ def inject_site_metadata():
 def home():
     return render_template(
         "index.html",
-        projects=PROJECTS[:3],
+        projects=[PROJECTS[1], PROJECTS[0], PROJECTS[2]],
         jobs=JOB_HISTORY,
         websites=WEBSITES,
     )
@@ -178,13 +180,6 @@ def sitemap():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
-
-
-@app.route("/design/job-history-options")
-def job_history_options():
-    preview_path = os.path.join("design-system", "mockups", "job-history-background-options.html")
-    with open(preview_path, "r", encoding="utf-8") as preview_file:
-        return Response(preview_file.read(), mimetype="text/html")
 
 
 @app.errorhandler(404)
