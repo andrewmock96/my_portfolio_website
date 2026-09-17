@@ -87,6 +87,11 @@ JOB_HISTORY = [
 
 WEBSITES = [
     {
+        "name": "Going Indie — Steam Market Research",
+        "url": "https://research.goingindie.co/",
+        "summary": "A market research platform I built during my Software Engineering internship at Going Indie to help independent game developers evaluate ideas and prepare to publish on Steam. Built with Python, Flask, MongoDB, HTML, CSS, and JavaScript, the application brings together Steam and SteamSpy data for game discovery, competitor analysis, market sizing, estimated revenue ranges, and player trends. Automated data pipelines refresh the game catalog and track upcoming releases, turning game data into practical insights for developers.",
+    },
+    {
         "name": "360Epoxy",
         "url": "https://360-epoxy.com",
         "summary": "A custom business website designed and developed with Flask, HTML, CSS, and JavaScript, built to support lead generation, client communication, and a polished production-ready web presence.",
